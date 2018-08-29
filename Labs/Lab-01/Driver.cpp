@@ -4,6 +4,7 @@
 	April Crockett
 	8/8/2018
 */
+// Hello
 
 #include "Text.h"
 #include <iostream>
