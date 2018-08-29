@@ -17,4 +17,4 @@
 	const char* getText(Text* myText);
 
 	int getLength(Text* myText);
-#endif /* GRANDPARENT_H */
+#endif /* TEXT_H */

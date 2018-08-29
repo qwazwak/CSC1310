@@ -5,42 +5,6 @@
 	8/8/2018
 */
 
-#include "Text.h"
-#include <iostream>
-
-using namespace std;
-
-int main () {
-	Text *myString1;
-	Text *myString2;
-	char tvshow[1000];
-	char movie[1000];
-
-	cout << "\n\nWhat is the most recent TV show you watched?\n";
-	cin.getline(tvshow, 1000);
-	myString1 = createText(tvshow);
-
-	cout << "\nWhat is the most recent Movie you watched?\n";
-	cin.getline(movie, 1000);
-	myString2 = createText(movie);
-
-	cout << "\n\nTV SHOW:\t";
-	displayText(myString1);
-	cout << "\t# CHARACTERS:\t" << getLength(myString1) << endl;
-
-	cout << "\nMOVIE:\t\t";
-	displayText(myString2);
-	cout << "\t# CHARACTERS:\t" << getLength(myString2) << endl;
-
-	destroyText(myString1);
-	destroyText(myString2);
-
-	return 0;
-}
-/*
-
-	Created by Rus Hoffman
-*/
 
 //#include <getopt.h> //getopt.h is required for the getopt function
 
@@ -520,14 +484,9 @@ using namespace std;
 enum bombNearbyTextures {
 	none = 0,
 	one,
-	BOMBNEAR_TWO,
-	BOMBNEAR_THREE,
-	BOMBNEAR_FOUR,
-	BOMBNEAR_FIVE,
-	BOMBNEAR_SIX,
-	BOMBNEAR_SEVEN,
-	BOMBNEAR_EIGHT,
-	BOMBNEAR_TOTAL
+	two,
+	three,
+	total
 };
 
 int main (int argc, char* argv[]){
@@ -667,6 +626,6 @@ int main (int argc, char* argv[]){
 
 
 	//Only the loader student needs manual deallocation. classDatabase has a deconstructor
-	delete[] ALLOCATEDARRAY;
+	//delete[] ALLOCATEDARRAY;
 	return 0;
 }

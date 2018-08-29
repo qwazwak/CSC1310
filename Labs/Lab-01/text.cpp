@@ -1,4 +1,6 @@
-Text* createText(const char* text);
+Text* createText(const char* text){
+	
+}
 
 void destroyText(Text* myText);
 

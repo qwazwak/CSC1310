@@ -1,4 +1,4 @@
-#ifndef TEXT_H
+#if !defined(TEXT_H)
 	#define TEXT_H
 
 	const char * textArray;//A character string holding my “String”
