@@ -1,11 +1,28 @@
-Text* createText(const char* text){
-	
+#include "Text.h"
+#include <string.h>
+#include <iostream>
+
+Text * createText(const char* text){
+	Text * pointerToThing = new Text;
+	pointerToThing->textArray = text;
+	pointerToThing->size = strlen(text);
+	return pointerToThing;
 }
 
-void destroyText(Text* myText);
+void destroyText(Text* myText) {
+	delete myText;
+}
 
-void displayText(Text* myText);
+void displayText(Text* myText) {
+	for (int i = 0; i < myText->size; i++) {
+		std::cout << myText->textArray[i];
+	}
+}
 
-const char* getText(Text* myText);
+const char* getText(Text* myText) {
+	return myText->textArray;
+}
 
-int getLength(Text* myText);
+int getLength(Text* myText) {
+	return myText->size;
+}

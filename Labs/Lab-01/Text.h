@@ -17,4 +17,6 @@
 	const char* getText(Text* myText);
 
 	int getLength(Text* myText);
+
+
 #endif /* TEXT_H */
