@@ -14,23 +14,21 @@
 		//Purpose: To create a new Text variable
 
 	void destroyText(Text* myText);
-		//Parameters:
-		//Returns:
-		//Purpose:
+		//Parameters: Send a pointer to a Text variable, which contains a c-string & length of the string
+		//Returns: nothing (void)
+		//Purpose: release dynamically allocated memory that the pointer is pointing to
 
 	void displayText(Text* myText);
-		//Parameters:
-		//Returns:
-		//Purpose:
+		//Parameters: Send a pointer to a Text variable, which contains a c-string & length of the string
+		//Returns: nothing (void)
+		//Purpose: prints out the string (character array)
 
 	const char* getText(Text* myText);
-		//Parameters:
-		//Returns:
-		//Purpose:
+		//Parameters: Send a pointer to a Text variable, which contains a c-string & length of the string
+		//Returns: pointer to a constant character array
 
 	int getLength(Text* myText);
-		//Parameters:
-		//Returns:
-		//Purpose:
+		//Parameters: Send a pointer to a Text variable, which contains a c-string & length of the string
+		//Returns: the lendth of the string (int)
 
 #endif /* TEXT_H */
