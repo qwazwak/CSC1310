@@ -1,54 +1,46 @@
 /*
-	Driver for Custom Text Structure
-	LAB 1 - CSC1310
-	April Crockett
-	8/8/2018
+	What is this program?
+	CSC1310 - LAB XX
+	Rus Hoffman and Braedin Jared
+	DATE
 */
 
 
-//#include <getopt.h> //getopt.h is required for the getopt function
+#include <getopt.h> //getopt.h is required for the getopt function and needs GNU compiler
+/*
+		a way to process arguments
+		essentially:
+		do somthing like:
+			char argSwitcher = getopt(argc, argv, "chf:r:m:d");
+			where "chf:r:m:d" are the valid Arguments
+			c means just if its there or nothing
+			c: means argument followed by text
+		Do a loop while argSwitcher is not -1 (-1 means no more arguments)
+		then you're done
+*/
 
-//#include <fstream>
-//#include <cmath>
-//#include <algorithm>
-//#include <iterator>
-//#include <random>
-//#include <string> //Real strings
-//#include <cstdlib>
+//#include <algorithm> So much I cant write here http://www.cplusplus.com/reference/algorithm/
 
-
-//#include <cstdint>
-//#include <quadmath.h> //required for the boost float 128
-//#include <boost/multiprecision/float128.hpp>
-//#include <boost/multiprecision/cpp_int.hpp>
-
+//#include <bitset>
+/*
+		Emulates an array of bool, but each bool is 1 bit, not 1 byte
+		http://www.cplusplus.com/reference/bitset/
+*/
 
 //#include <ctime>
-//#include <chrono>
-//#include <quadmath.h>
-//Needed for more than just float128
-
-
-//#include <boost/multiprecision/cpp_int.hpp>
 /*
-	// Fixed precision unsigned inegers:
-		boost::multiprecision::cpp_int::uint128_t
-		boost::multiprecision::cpp_int::uint256_t
-		boost::multiprecision::cpp_int::uint512_t
-		boost::multiprecision::cpp_int::uint1024_t
-	// Fixed precision signed inegers:
-		boost::multiprecision::cpp_int::int128_t
-		boost::multiprecision::cpp_int::int256_t
-		boost::multiprecision::cpp_int::int512_t
-		boost::multiprecision::cpp_int::int1024_t
+	http://www.cplusplus.com/reference/ctime/
+
+	Macro:
+		CLOCKS_PER_SEC
+
+	seconds = clock() / CLOCKS_PER_SEC
+
+	unsigned int start = clock();
+	cout << "waiting for keyhit";
+	cin.ignore();
+	cout << "Time taken in millisecs: " << clock()-start;
 */
-
-
-//#include <boost\multiprecision\float128.hpp>
-/*
-	boost::multiprecision::float128 variableName;
-*/
-
 
 //#include <vector>
 /*
@@ -87,14 +79,12 @@
 			swaps two vectors contents
 */
 
-
 //#include <windows.h>
 /*
 	LPCWSTR FOOBARDIRECTERY = L"c:\testdir";
 	CreateDirectory(FOOBARDIRECTERY, NULL)
 	CreateDirectory("output", NULL);
 */
-
 
 //#include <ctime>
 /*
@@ -110,7 +100,6 @@
 	cin.ignore();
 	cout << "Time taken in millisecs: " << clock()-start;
 */
-
 
 //#include <random>
 //All of this library is c++11 and requires compiler support
@@ -137,7 +126,6 @@
 		cout << "Entropy: " << rd.entropy() << endl;
 		cout << "setup done" << endl;
 */
-
 
 //#include <cstdint>
 //All of this library is c++11 and requires compiler support
@@ -201,7 +189,6 @@
 			INT_LEAST32_MAX
 			INT_LEAST64_MAX
 */
-
 
 //#include <cstdlib>
 /*
@@ -284,15 +271,13 @@
 				Convert string to unsigned long long integer (function )
 */
 
-
 //#include <time.h>
 /*
 	Has more, all I use is:
 	VARIABLE = time(NULL);
 */
 
-
-//#include <iostream>
+#include <iostream>
 /*
 	system("pause")
 		Enter any key to continue..
@@ -306,14 +291,12 @@
 		get a line
 */
 
-
 //#include <iomanip>
 /*
 	Manipulates input and output
 	cout << setprecision(2) << fixed << showpoint;
 	cout << minumum decimal points(VARIABLE OR NUMBER) << cutoff decimal points? << show decimal point always;
 */
-
 
 //#include <fstream>
 /* i/ofstream info
@@ -351,8 +334,7 @@
 	}
 */
 
-
-//#include <string>
+#include <string>
 /*
 	real strings
 	cstringvariable = stringVariableName.c_str();
@@ -386,7 +368,6 @@
 			stold
 				Convert string to long double (function template )
 */
-
 
 //#include <cmath>
 //Some parts of this library have C++11 requirments
@@ -481,7 +462,7 @@
 
 using namespace std;
 
-enum bombNearbyTextures {
+enum enumIfYaNeed {
 	none = 0,
 	one,
 	two,
@@ -490,62 +471,26 @@ enum bombNearbyTextures {
 };
 
 int main (int argc, char* argv[]){
+	#if defined(DEBUG)
+		clog << "program start" << endl;
+	#endif
 	//Variable creation
 		//very special variables
-			const string programName = "Portable Number Visualizer";
-			const string helpInfoText =
-							"Portable Ilam Spiral Generator Help and Info:" "\n"
-								"\n"
-								"Main use:" "\n"
-								"\t" "Just start the program," "\n"
-								"\t" "arguments are optional ways of speeding up startup/setup" "\n"
-
-								"Arguments:" "\n"
-								"-c" "\n"
-								"\t" "Forces console input and output" "\n"
-								"-h" "\n"
-								"\t" "Opens this help menu" "\n"
-								"-f XXXXXXXX" "\n"
-								"\t" "Specify the output file name" "\n"
-								"-r XXXXXXXX" "\n"
-								"\t" "Specifies minimum output resolution" "\n"
-								"-m XXXXXXXX" "\n"
-								"\t" "Specifies minimum maximum number to include" "\n"
-								"-d" "\n"
-								"\t" "Enables debug and if display" "\n";
+			const string programName = "GIVE THIS A NAME";
 
 
-		//bools for settings and Things
-
-		//Output file info
-			//unsigned char primeRgbColor[3];
-			//unsigned char compositeRgbColor[3];
-			string outputFileName = "";
-		//variables created here are used all over
 
 
-			uint_fast64_t edgeResolution = 128;
-			uint_fast64_t numberOfNumbers = edgeResolution * edgeResolution;
-
-
-		//UI Things
-
-
+	//End variable creation
 	#if defined(DEBUG)
-		cout << "main variables created" << endl;
+		clog << "main variables created, checking if arguments need processing" << endl;
 	#endif
 	if (argc > 1) {//Argument Parsing:
-		for (size_t argumentIDCycler = 0; argumentIDCycler < static_cast<size_t>(argc); argumentIDCycler++) {
-			if (strcmp(argv[argumentIDCycler], "c") == 0) {
-				tinyfd_forceConsole = 1;
-				break;
-			}
-		}
-		bool continueLoading = true;
-		uint_fast64_t possibleEdgeResolution = 0;
 		#if defined(DEBUG)
-			cout << "Parsing arguments" << endl;
+			clog << "Processing arguments" << endl;
 		#endif
+		bool continueLoading = true;
+
 		extern char *optarg;
 		char argSwitcher;
 		do {
@@ -557,25 +502,16 @@ int main (int argc, char* argv[]){
 			// m: minimum max number to use
 			// d enable debug
 			argSwitcher = getopt(argc, argv, "chf:r:m:d");
-			if (argSwitcher == -1) {
-				continueLoading = false;
-				#if defined(DEBUG)
-					cout << "Done parsing arguments" << endl;
-				#endif
-				break;
-			}
-			else {
+			if (argSwitcher != -1) {
 				#if defined(DEBUG)
 					cout << "Processing the '" << argSwitcher << "' argument" << endl;
 				#endif
 				switch (argSwitcher) {
 					case 's':
-						isShaded = true;
+
 						break;
 					case 'c':
-						tinyfd_forceConsole = 1;
-						break;
-					case 'h':
+
 						break;
 					case '?':
 					default:
@@ -584,48 +520,26 @@ int main (int argc, char* argv[]){
 						break;
 				}
 			}
-		} while (continueLoading == true);
-	}//End argument parsing
-	const long NAMESPACEBUFFER = 3;
-	char filename[255];
-	//Verify Input
-		if (argc != 3) {
-			cout << "Ivalid argument count" << endl;
-			cout << "To use this program you must specify the grades file and curve value" << endl;
-			cout << "ex: " << argv[0] << " gradesFile.txt 75" << endl;
-			return 0;
-		}
-		{
-			strcpy(filename, argv[1]);
-			char tempHolder;
-			ifstream inputTester;
-			inputTester.open(filename);
-			inputTester >> tempHolder;
-			while (inputTester.fail()) {
-				inputTester.close();
-				cout << "Error, File name is invalid" << endl;
-				cout << "Enter a new file name: ";
-				cin >> filename;
-				while(cin.fail()){
-				cin.clear();
-					cin.ignore();
-					cout << "Enter a new file name: ";
-					cin >> filename;
-				}
-				inputTester.open(filename);
-				inputTester >> tempHolder;
-				inputTester.close();
+			else {
+				continueLoading = false;
+				break;
 			}
-			inputTester.close();
-		}
-	//Input is now validated
+		} while (continueLoading == true);
+	}
+	#if defined(DEBUG)
+		clog << "Done with arguments" << endl;
+	#endif
+	//End argument parsing
 
 
 
 
 
 
-	//Only the loader student needs manual deallocation. classDatabase has a deconstructor
+
+
+
+	//Remember to free heap memory
 	//delete[] ALLOCATEDARRAY;
 	return 0;
 }
