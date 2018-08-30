@@ -5,9 +5,7 @@
 Text * createText(const char* text){
 	Text * pointerToThing = new Text;
 	pointerToThing->size = strlen(text);
-	for (int i = 0; i < pointerToThing->size; i++) {
-		pointerToThing->textArray[i] = text[i];
-	}
+	pointerToThing->textArray = text;
 	return pointerToThing;
 }
 
