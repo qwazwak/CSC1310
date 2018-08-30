@@ -1,12 +1,14 @@
+/* * * * * * * * * * * * * * * * * * * * * * * *
+*
+*	Title:      CSC1310 - LAB XX
+*	Author(s):  Rus Hoffman and Braedin Jared
+*	Date:       MONTH DATE, 2018
+*	Purpose:
+*
+* * * * * * * * * * * * * * * * * * * * * * * */
+
 #if !defined(GIVEMEANAME_H)
 	#define GIVEMEANAME_H
-
-	/*
-		What is this program?
-		CSC1310 - LAB XX
-		Rus Hoffman and Braedin Jared
-		DATE
-	*/
 
 
 	//#include <getopt.h> //getopt.h is required for the getopt function and needs GNU compiler
@@ -477,7 +479,7 @@
 
 			//Destructor
 			~GiveTheClassAName();
-				
+
 			//Functions:
 
 	};

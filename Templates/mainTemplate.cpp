@@ -1,9 +1,14 @@
-/*
-	What is this program?
-	CSC1310 - LAB XX
-	Rus Hoffman and Braedin Jared
-	DATE
-*/
+/* * * * * * * * * * * * * * * * * * * * * * * *
+*
+*	Title:      CSC1310 - LAB XX
+*	Author(s):  Rus Hoffman and Braedin Jared
+*	Date:       MONTH DATE, 2018
+*	Purpose:
+*
+* * * * * * * * * * * * * * * * * * * * * * * */
+
+
+
 
 
 #include <getopt.h> //getopt.h is required for the getopt function and needs GNU compiler
