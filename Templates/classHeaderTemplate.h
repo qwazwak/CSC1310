@@ -464,9 +464,12 @@
 					Compute absolute value, int or floating point (function)
 	*/
 
-	class GiveTheClassAName {
+	template <class TemplateVariable> class GiveTheClassAName {
 		private:
 			//Variables:
+			TemplateVariable a;
+			TemplateVariable b;
+			TemplateVariable c;
 
 
 
@@ -474,7 +477,7 @@
 
 
 		public:
-			//Constructor
+			//Constructor(s)
 			GiveTheClassAName();
 
 			//Destructor

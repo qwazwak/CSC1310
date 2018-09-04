@@ -91,21 +91,6 @@
 	CreateDirectory("output", NULL);
 */
 
-//#include <ctime>
-/*
-	http://www.cplusplus.com/reference/ctime/
-
-	Macro:
-		CLOCKS_PER_SEC
-
-	seconds = clock() / CLOCKS_PER_SEC
-
-	unsigned int start = clock();
-	cout << "waiting for keyhit";
-	cin.ignore();
-	cout << "Time taken in millisecs: " << clock()-start;
-*/
-
 //#include <random>
 //All of this library is c++11 and requires compiler support
 /*
@@ -546,5 +531,8 @@ int main (int argc, char* argv[]){
 
 	//Remember to free heap memory
 	//delete[] ALLOCATEDARRAY;
+	#if defined(DEBUG)
+		clog << "program ending" << endl;
+	#endif
 	return 0;
 }
