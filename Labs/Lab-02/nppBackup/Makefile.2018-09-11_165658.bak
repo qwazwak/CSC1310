@@ -1,0 +1,42 @@
+CXXFLAGS += -I ./ -std=c++98 -Wall -Wextra
+CCFLAGS += -I ./ -std=c98 -Wall -Wextra
+
+
+#Uncomment to apply these flags
+#all	:	CPPFLAGS += -include XXXX 
+#all	:	CXXFLAGS += -D<DEFINABLE> -I<DIRECTORY TO INCLUDE, only "" files>
+#all	:	CFLAGS   += -D<DEFINABLE> -I<DIRECTORY TO INCLUDE, only "" files>
+
+#Builds to pick from:
+all		:	executable
+release : CXXFLAGS += -03
+
+executable	:	TextDriver.o Text.o
+			g++ -o lab-02.exe TextDriver.o Text.o -std=c++98 -Wall -Wextra
+
+#Debug settings:
+
+#C and C++ Preprocessor flags
+#Currently none.. but if you want
+#debug	:	CPPFLAGS += 
+
+#C++ Compiler Flags
+debug	:	CXXFLAGS += -DDEBUG -g -fno-access-control -pedantic -Wchar-subscripts -Wmain -Wuninitialized -Wall -g -Q -O -fexceptions
+
+#C Compiler Flags
+debug	:	CCFLAGS  += -DDEBUG -g -fno-access-control -pedantic -Wchar-subscripts -Wmain -Wuninitialized -Wall -g -Q -O -fexceptions
+
+debug	:	executable
+
+			
+#File dependencies and how they are created
+#if any of the files listed has been altered since the last compile, generate a new .o file
+TextDriver.o	:	TextDriver.cpp
+				$(CXX) -I ./ -c TextDriver.cpp -std=c++98 -Wall -Wextra
+				
+Text.o		:	Text.cpp
+				$(CXX) -I ./ -c Text.cpp -std=c++98 -Wall -Wextra
+
+clean		:	Lab-02.exe
+			del *.o 
+			del Lab-02.exe

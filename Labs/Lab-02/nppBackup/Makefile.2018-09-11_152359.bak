@@ -1,0 +1,18 @@
+#this is a comment
+
+all			:	TextClass
+
+TextClass	:	TextDriver.o Text.o
+			g++ -o lab-02.exe TextDriver.o Text.o -std=c++98 -Wall -Wextra
+
+#here is how to generate the .o file
+#if any of the files listed has been altered since the last compile, generate a new .o file
+TextDriver.o	:	TextDriver.cpp
+				g++ -I ./ -c TextDriver.cpp -std=c++98 -Wall -Wextra
+				
+Text.o		:	Text.cpp
+				g++ -I ./ -c Movie.cpp -std=c++98 -Wall -Wextra
+
+clean		:	Lab-02.exe
+			del *.o 
+			del Lab-02.exe
