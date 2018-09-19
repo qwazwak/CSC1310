@@ -1,6 +1,6 @@
 CPPFLAGS += -I ./ -std=c++98
-CXXFLAGS += -I ./ -std=c++98
-CCFLAGS += -I ./ -std=c98
+CXXFLAGS += -I ./ -std=c++11
+CCFLAGS += -I ./ -std=c11
 
 all	:	release
 Program2 : release

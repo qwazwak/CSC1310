@@ -41,19 +41,32 @@ void DogHealth::printDogHealth()
 
 void DogHealth::printWeightStatistics()
 {
-	//WRITE THIS FUNCTION!!!!
+	string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+	float* stupidPointer = new float[MONTHS];
+	for (int i = 0; i < MONTHS; i++){
+		stupidPointer[i] = weight[i];
+	}
+	ArrayHelper<float> arrayMeme(stupidPointer, MONTHS);
+	cout << "weight: " <<
+	"\n" << "\t" << "Maximum: " << stupidPointer[arrayMeme.getMax()] << " in " << months[arrayMeme.getMax()] <<
+	"\n" << "\t" << "Minimum: " << stupidPointer[arrayMeme.getMin()] << " in " << months[arrayMeme.getMin()] <<
+	"\n" << "\t" << "Average: " << arrayMeme.getAvg() <<
+	"\n" << flush;
+	delete[] stupidPointer;
 }
 
 void DogHealth::printHeartRateStatistics()
 {
 	string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-	//	string name;
-	//	int age;
-	//	float weight[MONTHS];
-	//	int heartRate[MONTHS];
-	cout << "Heart rate"
-	for (char i = 0; i < 12; i++) {
-		cout << months[i] << ": " << heartRate[i] << "\n";
+	int* stupidPointer = new int[MONTHS];
+	for (int i = 0; i < MONTHS; i++){
+		stupidPointer[i] = heartRate[i];
 	}
-	cout << flush;
+	ArrayHelper<int> arrayMeme(stupidPointer, MONTHS);
+	cout << "Heartrate: " <<
+	"\n" << "\t" << "Maximum: " << stupidPointer[arrayMeme.getMax()] << " in " << months[arrayMeme.getMax()] <<
+	"\n" << "\t" << "Minimum: " << stupidPointer[arrayMeme.getMin()] << " in " << months[arrayMeme.getMin()] <<
+	"\n" << "\t" << "Average: " << arrayMeme.getAvg() <<
+	"\n" << flush;
+	delete[] stupidPointer;
 }
