@@ -41,32 +41,32 @@ void DogHealth::printDogHealth()
 
 void DogHealth::printWeightStatistics()
 {
+	cout << "\n";
 	string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-	float* stupidPointer = new float[MONTHS];
+	int* stupidPointer = new int[MONTHS];
 	for (int i = 0; i < MONTHS; i++){
 		stupidPointer[i] = weight[i];
 	}
-	ArrayHelper<float> arrayMeme(stupidPointer, MONTHS);
-	cout << "weight: " <<
-	"\n" << "\t" << "Maximum: " << stupidPointer[arrayMeme.getMax()] << " in " << months[arrayMeme.getMax()] <<
-	"\n" << "\t" << "Minimum: " << stupidPointer[arrayMeme.getMin()] << " in " << months[arrayMeme.getMin()] <<
-	"\n" << "\t" << "Average: " << arrayMeme.getAvg() <<
-	"\n" << flush;
+	ArrayHelper<int> arrayMeme(stupidPointer, MONTHS);
+	cout << "Weight: ";
+	cout << "\n" << "\t" << "Maximum: " << stupidPointer[arrayMeme.getMax()] << " in " << months[arrayMeme.getMax()];
+	cout << "\n" << "\t" << "Minimum: " << stupidPointer[arrayMeme.getMin()] << " in " << months[arrayMeme.getMin()];
+	cout << "\n" << "\t" << "Average: " << static_cast<float>(arrayMeme.getAvg()) << "\n" << flush;
 	delete[] stupidPointer;
 }
 
 void DogHealth::printHeartRateStatistics()
 {
+	cout << "\n";
 	string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	int* stupidPointer = new int[MONTHS];
 	for (int i = 0; i < MONTHS; i++){
 		stupidPointer[i] = heartRate[i];
 	}
 	ArrayHelper<int> arrayMeme(stupidPointer, MONTHS);
-	cout << "Heartrate: " <<
-	"\n" << "\t" << "Maximum: " << stupidPointer[arrayMeme.getMax()] << " in " << months[arrayMeme.getMax()] <<
-	"\n" << "\t" << "Minimum: " << stupidPointer[arrayMeme.getMin()] << " in " << months[arrayMeme.getMin()] <<
-	"\n" << "\t" << "Average: " << arrayMeme.getAvg() <<
-	"\n" << flush;
+	cout << "Heartrate: ";
+	cout << "\n" << "\t" << "Maximum: " << stupidPointer[arrayMeme.getMax()] << " in " << months[arrayMeme.getMax()];
+	cout << "\n" << "\t" << "Minimum: " << stupidPointer[arrayMeme.getMin()] << " in " << months[arrayMeme.getMin()];
+	cout << "\n" << "\t" << "Average: " << static_cast<float>(arrayMeme.getAvg()) << "\n" << flush;
 	delete[] stupidPointer;
 }
