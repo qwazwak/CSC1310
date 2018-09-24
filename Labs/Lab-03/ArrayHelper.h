@@ -26,14 +26,14 @@ class ArrayHelper {
 		/*
 		 Function name:	getMax
 		 Parameters:	nothing (void)
-		 Returns:		the index of the largest value in array (T)
+		 Returns:		the index of the largest value in array (long)
 		 */
 		long getMax();
 
 		/*
 		 Function name:	getMin
 		 Parameters:	nothing (void)
-		 Returns:		the index of the smallest value in array (T)
+		 Returns:		the index of the smallest value in array (long)
 		 */
 		long getMin();
 
@@ -47,16 +47,10 @@ class ArrayHelper {
 		/*
 		 Function name:	getAvg
 		 Parameters:	nothing (void)
-		 Returns:		the average value of elements in the array (double)
+		 Returns:		the average value of elements in the array (float)
 		 */
 		float getAvg();
 };
 
 #include "ArrayHelper.cpp"
-
-
-
-
-
-
 #endif

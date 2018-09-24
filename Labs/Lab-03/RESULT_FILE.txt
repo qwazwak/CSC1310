@@ -1,0 +1,67 @@
+
+
+Hello!  Welcome to the Dog Health Program!
+
+
+
+What is the dog's name?  
+What is the dog's age?  
+
+Please enter in the dog's weight (LBS) & resting heart rate (BPM) 
+for each month in 2017.
+
+MONTH 1 WEIGHT:  MONTH 1 RESTING HEART RATE:  
+MONTH 2 WEIGHT:  MONTH 2 RESTING HEART RATE:  
+MONTH 3 WEIGHT:  MONTH 3 RESTING HEART RATE:  
+MONTH 4 WEIGHT:  MONTH 4 RESTING HEART RATE:  
+MONTH 5 WEIGHT:  MONTH 5 RESTING HEART RATE:  
+MONTH 6 WEIGHT:  MONTH 6 RESTING HEART RATE:  
+MONTH 7 WEIGHT:  MONTH 7 RESTING HEART RATE:  
+MONTH 8 WEIGHT:  MONTH 8 RESTING HEART RATE:  
+MONTH 9 WEIGHT:  MONTH 9 RESTING HEART RATE:  
+MONTH 10 WEIGHT:  MONTH 10 RESTING HEART RATE:  
+MONTH 11 WEIGHT:  MONTH 11 RESTING HEART RATE:  
+MONTH 12 WEIGHT:  MONTH 12 RESTING HEART RATE:  
+
+Thank you!  Scout's data has been saved!
+
+
+	NAME NAME:             Scout                                             
+	AGE:                   7                                                 
+	WEIGHT PER MONTH:
+     
+                            MONTH 1:  57.8
+                            MONTH 2:  55.4
+                            MONTH 3:  52.1
+                            MONTH 4:  59.6
+                            MONTH 5:  65.4
+                            MONTH 6:  72.4
+                            MONTH 7:  72.5
+                            MONTH 8:  71.1
+                            MONTH 9:  68.8
+                            MONTH 10:  68.8
+                            MONTH 11:  69.3
+                            MONTH 12:  70.4
+	HEART RATE PER MONTH:
+ 
+                            MONTH 1:  70
+                            MONTH 2:  69
+                            MONTH 3:  90
+                            MONTH 4:  95
+                            MONTH 5:  100
+                            MONTH 6:  102
+                            MONTH 7:  103
+                            MONTH 8:  101
+                            MONTH 9:  99
+                            MONTH 10:  100
+                            MONTH 11:  98
+                            MONTH 12:  98
+Weight: 
+	Maximum: 72 in June
+	Minimum: 52 in March
+	Average: 64.8
+
+Heartrate: 
+	Maximum: 103 in July
+	Minimum: 69 in February
+	Average: 93.8
