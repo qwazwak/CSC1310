@@ -1,0 +1,15 @@
+How many days did Jane steal moon pies?
+Enter the number stolen each day
+
+
+DAY 1: 
+DAY 2: 
+DAY 3: 
+DAY 4: 
+DAY 5: 
+
+-------------------RESULTS-------------------
+TOTAL # MOON PIES STOLEN:  19
+AVERAGE # OF MOON PIES STOLEN PER DAY:  3.8
+MOST # MOON PIES STOLEN IN ONE DAY: 7
+LEAST # OF MOON PIES STOLEN IN ONE DAY: 1

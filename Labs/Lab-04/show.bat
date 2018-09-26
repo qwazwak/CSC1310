@@ -1,0 +1,3 @@
+make
+Moonpie.exe
+pause
