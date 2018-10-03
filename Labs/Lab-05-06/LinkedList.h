@@ -1,6 +1,6 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  *
- *	Title:		CSC1310 - Program 01 - Single Movie Encapsulation class
+ *	Title:		CSC1310 - Lab 05/06 - Linked List class
  *	Author(s):	Rus Hoffman
  *	Date:		September 4, 2018
  *	Purpose:		Practice working with classes which include member classes
@@ -10,112 +10,51 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
-#include "Text.h"
+#if !defined(CLEARSCREEN_SIZE)
+#define CLEARSCREEN_SIZE 100
+#endif
+
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <cstring>
 using namespace std;
 
-#if !defined(CLEARSCREEN_SIZE)
-#define CLEARSCREEN_SIZE 100
-#endif
+template <class tVar>
+struct ListNode {
+	tVar data;
+	ListNode* next;
+};
+/*
+A structure (struct) ADT named ListNode, which defines a node with a value & a pointer to the next ListNode.
+ A pointer to a ListNode named head
+ A pointer to a ListNode named tail
+ An integer named numNodes
+LinkedList class should have the following member functions:
+ Constructor – should initialize head & tail to point to nothing and initialize numNodes to zero
+ Destructor – like a “RemoveAll” function – should deallocate memory for all existing nodes
+ getLength – should return the number of nodes in the list
+ getNodeValue – this function accepts a position (integer) as a parameter and then returns the value (object) inside the
+node at that position
+ appendNode – this function accepts a value (object) as a parameter. It creates a new node at the end of the list with the
+sent object inside of it and increments the number of nodes. This function does not return anything.
+ deleteNode – this function accepts a position (integer) as a parameter, which indicates the position of the node to be
+deleted. It updates the links of the nodes on either side of this node to be deleted. Then it deletes the node. Then, it
+decrements the number of nodes.
 
-class Movie {
+
+*/
+class LinkedList {
 	private:
 		//Variables:
-		Text* movieTitle;     //title of movie
-		long movieLength;     //length of movie in minutes
-		long movieYear;     //year released
-		Text* movieGenre;     //comedy, horror, sci-fi, fantasy, romance, thriller, drama, action, biography
-		Text* movieRating;     //Age rating, EX: G, PG, PG-13, R, MA
-		long movieOscars;     //number of Oscars won
-		double movieNumStars;     //taken from IMDB on 10 star scale
 
-		bool isOnlyNumaric (string input);
-		bool isOnlyNumaricFloat (string input);
-
-		void bootlegCLS ();
 
 	public:
-		Movie ();
-
-		//Overloading Constructor for quicker setup
-		Movie (Text*, long, long, Text*, Text*, long, double);
-		Movie (char*, long, long, char*, char*, long, double);
-		Movie (string, long, long, string, string, long, double);
+		//Default Constructor
+		LinkedList ();
 
 		//Destructor
-		~Movie ();
-
-		/*
-		 Function name:	editMovieDetails
-		 Parameters:		nothing (void)
-		 Returns:			nothing (void)
-		 Purpose:			This function should be called to give the user a menu to edit the movie's details
-		 */
-		void editMovieDetails ();
-
-		/*
-		 Function name:	setMovieDetailXXX
-		 Parameters:		Either the variable for that value, or all of them depending on which function
-		 Returns:			nothing (void)
-		 Purpose:			This function should be called when the program needs to replace a single movie's variable, or all of them
-		 */
-		void setMovieFull (Text*, long, long, Text*, Text*, long, double);
-		void setMovieDetailTitle (Text*);
-		void setMovieDetailLength (long);
-		void setMovieDetailReleaseYear (long);
-		void setMovieDetailGenre (Text*);
-		void setMovieDetailRating (Text*);
-		void setMovieDetailOscarCount (long);
-		void setMovieDetailIMBDRating (double);
-
-		/*
-		 Function name:	getMovieDetailXXX
-		 Parameters:		nothing (void)
-		 Returns:			the contained value
-		 Purpose:			This function should be called when the program needs to get a single movie's piece of data
-		 */
-		Text* getMovieDetailTitle ();
-		long getMovieDetailLength ();
-		long getMovieDetailReleaseYear ();
-		Text* getMovieDetailGenre ();
-		Text* getMovieDetailRating ();
-		long getMovieDetailOscarCount ();
-		double getMovieDetailIMBDRating ();
-
-		/*
-		 Function name:	printMovieTitle
-		 Parameters:		nothing (void)
-		 Returns:			nothing (void)
-		 Purpose:			This function should be called when the program needs to print the movies title to the cout buffer
-		 */
-		void printMovieTitle ();
-
-		/*
-		 Function name:	printMovieDetails
-		 Parameters:		nothing (void)
-		 Returns: 		nothing (void)
-		 Purpose:			This function should be called when the program needs to print ALL the movie information to the cout buffer
-		 */
-		void printMovieDetails ();
-
-		/*
-		 Function name:	printMovieDetailsNoFlush
-		 Parameters:		nothing (void)
-		 Returns: 		nothing (void)
-		 Purpose:			This function should be called when the program needs to print ALL the movie information to the cout buffer, but without flushing the cout buffer
-		 */
-		void printMovieDetailsNoFlush ();
-
-		/*
-		 Function name:	printMovieDetailsToFile
-		 Parameters:		a file stream object (sent by reference)
-		 Returns:			nothing (void)
-		 Purpose:  		This function should be called when the program needs to print ALL the movie information to a file. Does not modify stream settings at all
-		 */
-		void printMovieDetailsToFile (ofstream& outFile);
+		~LinkedList ();
 
 		/*
 		 Function name:	printMovieDetailsToFileNoFlushing
