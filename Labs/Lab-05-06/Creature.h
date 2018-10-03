@@ -1,130 +1,110 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  *
- *	Title:		CSC1310 - Program 01 - Single Movie Encapsulation class
- *	Author(s):	Rus Hoffman
- *	Date:		September 4, 2018
- *	Purpose:		Practice working with classes which include member classes
+ *	Title:	CSC1310 - Lab 05/06 - Creature Class
+ *	Authors:	Rus Hoffman and Braedin Jared
+ *	Date:	October 3, 2018
+ *	Purpose:	memebigboy
  *
  * * * * * * * * * * * * * * * * * * * * * * * */
 
-#ifndef MOVIE_H
-#define MOVIE_H
+#ifndef CREATURE_H
+#define CREATURE_H
 
-#include "Text.h"
+#include <string>
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-#include <cstring>
 using namespace std;
 
-#if !defined(CLEARSCREEN_SIZE)
-#define CLEARSCREEN_SIZE 100
-#endif
-
-class Movie {
+class Creature {
 	private:
 		//Variables:
-		Text* movieTitle;     //title of movie
-		long movieLength;     //length of movie in minutes
-		long movieYear;     //year released
-		Text* movieGenre;     //comedy, horror, sci-fi, fantasy, romance, thriller, drama, action, biography
-		Text* movieRating;     //Age rating, EX: G, PG, PG-13, R, MA
-		long movieOscars;     //number of Oscars won
-		double movieNumStars;     //taken from IMDB on 10 star scale
-
-		bool isOnlyNumaric (string input);
-		bool isOnlyNumaricFloat (string input);
-
-		void bootlegCLS ();
+		string creatureName;
+		string creatureDescription;
+		double upkeepMonthlyCost;
+		bool isDangerous;
 
 	public:
-		Movie ();
-
-		//Overloading Constructor for quicker setup
-		Movie (Text*, long, long, Text*, Text*, long, double);
-		Movie (char*, long, long, char*, char*, long, double);
-		Movie (string, long, long, string, string, long, double);
-
+		//Default Constructor
+		Creature ();
+		Creature (string, string, float, bool);
+		Creature (string, string, double, bool);
+		Creature (char*, char*, float, bool);
+		Creature (char*, char*, double, bool);
 		//Destructor
-		~Movie ();
+		~Creature ();
 
 		/*
-		 Function name:	editMovieDetails
-		 Parameters:		nothing (void)
-		 Returns:			nothing (void)
-		 Purpose:			This function should be called to give the user a menu to edit the movie's details
+		 Parameters:	nothing (void)
+		 Returns:		nothing (void)
+		 Purpose:		-
 		 */
-		void editMovieDetails ();
+		string getName ();
 
 		/*
-		 Function name:	setMovieDetailXXX
-		 Parameters:		Either the variable for that value, or all of them depending on which function
-		 Returns:			nothing (void)
-		 Purpose:			This function should be called when the program needs to replace a single movie's variable, or all of them
+		 Parameters:	nothing (void)
+		 Returns:		nothing (void)
+		 Purpose:		-
 		 */
-		void setMovieFull (Text*, long, long, Text*, Text*, long, double);
-		void setMovieDetailTitle (Text*);
-		void setMovieDetailLength (long);
-		void setMovieDetailReleaseYear (long);
-		void setMovieDetailGenre (Text*);
-		void setMovieDetailRating (Text*);
-		void setMovieDetailOscarCount (long);
-		void setMovieDetailIMBDRating (double);
+		string getDescription ();
 
 		/*
-		 Function name:	getMovieDetailXXX
-		 Parameters:		nothing (void)
-		 Returns:			the contained value
-		 Purpose:			This function should be called when the program needs to get a single movie's piece of data
+		 Parameters:	nothing (void)
+		 Returns:		nothing (void)
+		 Purpose:		-
 		 */
-		Text* getMovieDetailTitle ();
-		long getMovieDetailLength ();
-		long getMovieDetailReleaseYear ();
-		Text* getMovieDetailGenre ();
-		Text* getMovieDetailRating ();
-		long getMovieDetailOscarCount ();
-		double getMovieDetailIMBDRating ();
+		bool getDangerous ();
 
 		/*
-		 Function name:	printMovieTitle
-		 Parameters:		nothing (void)
-		 Returns:			nothing (void)
-		 Purpose:			This function should be called when the program needs to print the movies title to the cout buffer
+		 Parameters:	nothing (void)
+		 Returns:		nothing (void)
+		 Purpose:		-
 		 */
-		void printMovieTitle ();
+		double getCost ();
 
 		/*
-		 Function name:	printMovieDetails
-		 Parameters:		nothing (void)
-		 Returns: 		nothing (void)
-		 Purpose:			This function should be called when the program needs to print ALL the movie information to the cout buffer
+		 Parameters:	nothing (void)
+		 Returns:		nothing (void)
+		 Purpose:		-
 		 */
-		void printMovieDetails ();
+		void setName ();
 
 		/*
-		 Function name:	printMovieDetailsNoFlush
-		 Parameters:		nothing (void)
-		 Returns: 		nothing (void)
-		 Purpose:			This function should be called when the program needs to print ALL the movie information to the cout buffer, but without flushing the cout buffer
+		 Parameters:	nothing (void)
+		 Returns:		nothing (void)
+		 Purpose:		-
 		 */
-		void printMovieDetailsNoFlush ();
+		void setDescription (string);
 
 		/*
-		 Function name:	printMovieDetailsToFile
-		 Parameters:		a file stream object (sent by reference)
-		 Returns:			nothing (void)
-		 Purpose:  		This function should be called when the program needs to print ALL the movie information to a file. Does not modify stream settings at all
+		 Parameters:	nothing (void)
+		 Returns:		nothing (void)
+		 Purpose:		-
 		 */
-		void printMovieDetailsToFile (ofstream& outFile);
+		void setDangerous (bool);
 
 		/*
-		 Function name:	printMovieDetailsToFileNoFlushing
-		 Parameters:		a file stream object (sent by reference)
-		 Returns: 		nothing (void)
-		 Purpose:  		This function should be called when the program needs to print ALL the movie information to a file without flushing the buffer automatically. Does not modify stream settings at all
+		 Parameters:	nothing (void)
+		 Returns:		nothing (void)
+		 Purpose:		-
 		 */
-		void printMovieDetailsToFileNoFlushing (ofstream& outFile);
+		void setCost (double);
 
+		/*
+		 Parameters:	nothing (void)
+		 Returns:		nothing (void)
+		 Purpose:		a function to print a single creature's information to the screen in a nice, easy to read format
+		 */
+		void printCreature ();
+
+		/*
+		 Parameters:	nothing (void)
+		 Returns:		nothing (void)
+		 Purpose:		a function to print a single creature’s information to the file – unformatted – one piece of
+		 information per line. This is so the program would be able to read the creature’s information back later.
+		 */
+		void printCreatureToFile (ofstream&);
+		void printCreatureToFile (string);
 };
 
-#endif //end MOVIE_H define
+#endif //end CREATURE_H define
