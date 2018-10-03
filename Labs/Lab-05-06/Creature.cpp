@@ -87,42 +87,54 @@ string Creature::getDescription (){
  Returns:		nothing (void)
  Purpose:		-
  */
-bool Creature::getDangerous ();
+bool Creature::getDangerous (){
+	return isDangerous;
+}
 
 /*
  Parameters:	nothing (void)
  Returns:		nothing (void)
  Purpose:		-
  */
-double Creature::getCost ();
+double Creature::getCost (){
+	return upkeepMonthlyCost;
+}
 
 /*
  Parameters:	nothing (void)
  Returns:		nothing (void)
  Purpose:		-
  */
-void Creature::setName ();
+void Creature::setName (string inputName){
+	creatureName = inputName;
+}
 
 /*
  Parameters:	nothing (void)
  Returns:		nothing (void)
  Purpose:		-
  */
-void Creature::setDescription (string);
+void Creature::setDescription (string inputdescription){
+	creatureDescription = inputdescription;
+}
 
 /*
  Parameters:	nothing (void)
  Returns:		nothing (void)
  Purpose:		-
  */
-void Creature::setDangerous (bool);
+void Creature::setCost (double inputCost){
+	upkeepMonthlyCost = inputCost;
+}
 
 /*
  Parameters:	nothing (void)
  Returns:		nothing (void)
  Purpose:		-
  */
-void Creature::setCost (double);
+void Creature::setDangerous (bool inputDangerous){
+	isDangerous = inputDangerous;
+}
 
 /*
  Parameters:	nothing (void)

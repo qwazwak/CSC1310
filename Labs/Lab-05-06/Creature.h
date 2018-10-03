@@ -67,7 +67,7 @@ class Creature {
 		 Returns:		nothing (void)
 		 Purpose:		-
 		 */
-		void setName ();
+		void setName (string);
 
 		/*
 		 Parameters:	nothing (void)
