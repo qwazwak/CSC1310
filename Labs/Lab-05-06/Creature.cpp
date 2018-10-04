@@ -14,18 +14,6 @@
 #include <fstream>
 using namespace std;
 
-/*
- string creatureName;
- string creatureDescription;
- double upkeepMonthlyCost;
- bool isDangerous;
-
- creatureName
- creatureDescription
- upkeepMonthlyCost
- isDangerous
- */
-//Default Constructor
 Creature::Creature () {
 	creature_Name = "ERROR: NOT SET";
 	creature_Description = "ERROR: NOT SET";
@@ -187,7 +175,6 @@ void Creature::printCreature () {
  Purpose:		a function to print a single creature’s information to the file – unformatted – one piece of
  information per line. This is so the program would be able to read the creature’s information back later.
  */
-
 void Creature::printCreatureToFile (string pathToFileAndName) {
 	ofstream theStream;
 	theStream.open(pathToFileAndName);
