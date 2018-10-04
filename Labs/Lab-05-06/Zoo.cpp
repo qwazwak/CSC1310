@@ -1,50 +1,26 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  *
- *	Title:		CSC1310 - Program 01 - Driver source
- *	Author(s):	Rus Hoffman
- *	Date:		September 4, 2018
- *	Purpose:		drive the Movies, Movie, and Text classes
+ *	Title:	CSC1310 - Lab 05/06 - Creature Class
+ *	Authors:	Rus Hoffman and Braedin Jared
+ *	Date:	October 4, 2018
+ *	Purpose:	memebigboy
  *
  * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include "Movies.h"
-#include "Movie.h"
-#include "Text.h"
+#include "LinkedList.h"
+#include "Creature.h"
 #include <iostream>
 #include <limits>
+#include <iomanip>
+#include <string>
 
 using namespace std;
-
-bool has_suffix (const string &str, const string &suffix) {
-	return str.size() >= suffix.size() && str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
-}
-
-void bootlegClearScreen (unsigned int numLinesToClear = 60) {
-	cout << flush;
-	for (unsigned int i = 0; i < numLinesToClear; i = i + 1) {
-		cout << "\n";
-	}
-	cout << flush;
-}
-
-bool isOnlyNumaric (string input) {
-	for (unsigned long i = 0; i < input.length(); i++) {
-		if( ! (input[i] >= '0' && input[i] <= '9')) {
-			return false;
-		}
-	}
-	if(input[0] == '\n') {
-		return false;
-	}
-	return true;
-}
 
 int main () {
 	const string STANDARDFILEEXTENTION = ".txt";
 	long menuChoice;
 	const long INITMAXMOVIE = 1;
 	string filename;
-	Movies movieLibrary(INITMAXMOVIE);
 
 	do {
 		cin.clear();
@@ -79,66 +55,9 @@ int main () {
 
 		switch (menuChoice) {
 			case 1:
-				cout << "\n" << "What is file named? (example" << STANDARDFILEEXTENTION << "):  ";
-				getline(cin, filename);
-				while (cin.fail() == true || has_suffix(filename, STANDARDFILEEXTENTION) == false || filename.length() == 4) {
-					if(cin.fail() == true) {
-						cout << "an error has occurred" << "\n";
-					}
-					else {
-						if(has_suffix(filename, STANDARDFILEEXTENTION) == false) {
-							cout << "error: be sure the file name ends in \"" << STANDARDFILEEXTENTION << "\"" << "\n";
-						}
-						if(filename.length() == 4){
-							cout << "be sure to enter a file name" << "\n";
-						}
-					}
-					cout << "What is file named? (example" << STANDARDFILEEXTENTION << "):  ";
-					getline(cin, filename);
-				}
-				movieLibrary.importFromFile(filename);     //function is in Movies.cpp
+
 				break;
-
-			case 2:
-				cout << "\n" << "What do you want to name the file? (example" << STANDARDFILEEXTENTION << "):  ";
-				getline(cin, filename);
-				while (cin.fail() == true || has_suffix(filename, STANDARDFILEEXTENTION) == false || filename.length() == 4) {
-					if(cin.fail() == true) {
-						cout << "an error has occurred" << "\n";
-					}
-					else {
-						if(has_suffix(filename, STANDARDFILEEXTENTION) == false) {
-							cout << "error: be sure the file name ends in \"" << STANDARDFILEEXTENTION << "\"" << "\n";
-						}
-						if(filename.length() == 4){
-							cout << "be sure to enter a file name" << "\n";
-						}
-					}
-					cout << "What do you want to name the file? (example" << STANDARDFILEEXTENTION << "):  ";
-					getline(cin, filename);
-
-				}
-				movieLibrary.exportToFile(filename);     //function is in Movies.cpp
-				break;
-
-			case 3:     //add a movie
-				movieLibrary.addMovieToArrayFromUser();
-				break;
-
-			case 4:     //remove a movie
-				movieLibrary.removeMovieByUserChoice();
-				break;
-
-			case 5:     //edit a movie
-				movieLibrary.editMovieInArray();
-				break;
-
-			case 6:     //print all movies
-				movieLibrary.displayAllMoviesFullDetails();
-				break;
-
-			case 7:
-				//exit menu loop and close program
+			default:
 				break;
 
 		}

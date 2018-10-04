@@ -19,14 +19,15 @@ using namespace std;
 class Creature {
 	private:
 		//Variables:
-		string creatureName;
-		string creatureDescription;
-		double upkeepMonthlyCost;
-		bool isDangerous;
+		string creature_Name;
+		string creature_Description;
+		double creature_Upkeep;
+		bool creature_IsDangerous;
 
 	public:
 		//Default Constructor
 		Creature ();
+		Creature (string);
 		Creature (string, string, float, bool);
 		Creature (string, string, double, bool);
 		Creature (char*, char*, float, bool);
@@ -98,12 +99,12 @@ class Creature {
 		void printCreature ();
 
 		/*
-		 Parameters:	nothing (void)
+		 Parameters:	either a string to the filename or a stream to a file
 		 Returns:		nothing (void)
-		 Purpose:		a function to print a single creature’s information to the file – unformatted – one piece of
-		 information per line. This is so the program would be able to read the creature’s information back later.
+		 Purpose:		export creature data one line at a time for later loading
 		 */
 		void printCreatureToFile (ofstream&);
+		void printCreatureToFileNoFlush (ofstream&);
 		void printCreatureToFile (string);
 };
 
