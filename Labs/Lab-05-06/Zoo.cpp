@@ -77,7 +77,7 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 			isDangerSemiBuffer = (dangerBuffer.compare(noSyn[0]) == 0 || dangerBuffer.compare(noSyn[1]) == 0 || dangerBuffer.compare(noSyn[2]) == 0) ? 0 : -1;
 		}
 		isDangerConverted = isDangerSemiBuffer == 0 ? false : true;
-		listToAddTo->appendNode(new Creature(nameBuffer, descBuffer, upkeepBuffer, isDangerConverted));
+		listToAddTo->appendNode(Creature(nameBuffer, descBuffer, upkeepBuffer, isDangerConverted));
 
 		cout << "CREATURE ADDED:" << "\n";
 		cout << "Name:" << "\n";
@@ -139,6 +139,12 @@ void enterMagicalCreatureFromFile (LinkedList<Creature>* listToAddTo) {
  linked list. If there are creatures in the linked list then it should print each creature’s detail in the list.
  This function does not return anything.
  */
+
+/*
+ * Parameters:	a pointer to a linked list of Creatures
+ * Returns:	nothing (void)
+ * Purpose:	export data to file
+ */
 void saveCreaturesToFile (LinkedList<Creature>* creatureLinkedList) {
 	string filename;
 	const string STANDARDFILEEXTENTION = ".txt";
@@ -151,10 +157,10 @@ void saveCreaturesToFile (LinkedList<Creature>* creatureLinkedList) {
 		cout << "THERE ARE NO CREATURES AT YOUR ZOO!" << "\n" << flush;
 		return;
 	}
-
-
+	//get filename from user
 	cout << "Enter file name: " << "\n" << flush;
 	getline(cin, filename);
+	//if it doesnt have a .txt extention or is too short to have one, loop until it does
 	while (cin.fail() == true || has_suffix(filename, STANDARDFILEEXTENTION) == false || filename.length() == 4) {
 		if(cin.fail() == true) {
 			cout << "invalid input - unknown error has occurred, try again" << "\n";
@@ -171,20 +177,14 @@ void saveCreaturesToFile (LinkedList<Creature>* creatureLinkedList) {
 		getline(cin, filename);
 	}
 
+	//open a stream to the file and export the data to it
 	fileExport.open(filename);
-	for(size_t i = 0; i <creatureLinkedList->getLength; i++){
+	for (size_t i = 0; i < creatureLinkedList->getLength; i++) {
 		creatureBuffer = creatureLinkedList->getNodeValue(i);
 		creatureBuffer->printCreatureToFile(filename);
 	}
 	fileExport.close();
 }
-/*
- saveCreaturesToFile –
- this function should either print “THERE ARE NO CREATURES AT YOUR ZOO!” if there are no creatures in the linked list.
- If there are creatures in the linked list then it should ask the user for the filename that they wish to use to save the creatures
- then use a loop to get a creature from each node
- then call this creature’s printCreatureToFile function, sending the filename to the function.
- */
 
 int main () {
 	const string STANDARDFILEEXTENTION = ".txt";

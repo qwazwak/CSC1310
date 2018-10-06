@@ -108,7 +108,6 @@ class Creature {
 		 */
 		void printCreatureToFile (string);
 		void printCreatureToFile (ofstream&);
-		void printCreatureToFileNoFlush (ofstream&);
 };
 
 #endif //end CREATURE_H define
