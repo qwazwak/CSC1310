@@ -175,14 +175,27 @@ void Creature::printCreature () {
  Purpose:		a function to print a single creature’s information to the file – unformatted – one piece of
  information per line. This is so the program would be able to read the creature’s information back later.
  */
-void Creature::printCreatureToFile (string pathToFileAndName) {
+void Creature::printCreatureToFile (string fileName) {
 	ofstream theStream;
-	theStream.open(pathToFileAndName);
+	theStream.open(fileName, ofstream::app | ofstream::ate);
+	theStream << creature_Name << "\n";
+	theStream << creature_Description << "\n";
+	theStream << creature_Upkeep << "\n";
+	theStream << (creature_IsDangerous ? ("yes") : ("no")) << "\n" << flush;
+	theStream.close();
+}
+void Creature::printCreatureToFile (ofstream& theStream) {
 	theStream << setw(0) << setfill(' ');
 	theStream << creature_Name << "\n";
 	theStream << creature_Description << "\n";
 	theStream << creature_Upkeep << "\n";
 	theStream << (creature_IsDangerous ? ("Yes") : ("No")) << "\n";
 	theStream << flush;
-	theStream.close();
+}
+void Creature::printCreatureToFileNoFlush (ofstream& theStream) {
+	theStream << setw(0) << setfill(' ');
+	theStream << creature_Name << "\n";
+	theStream << creature_Description << "\n";
+	theStream << creature_Upkeep << "\n";
+	theStream << (creature_IsDangerous ? ("Yes") : ("No")) << "\n";
 }

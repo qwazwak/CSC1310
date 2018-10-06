@@ -106,9 +106,9 @@ class Creature {
 		 Returns:		nothing (void)
 		 Purpose:		export creature data one line at a time for later loading
 		 */
+		void printCreatureToFile (string);
 		void printCreatureToFile (ofstream&);
 		void printCreatureToFileNoFlush (ofstream&);
-		void printCreatureToFile (string);
 };
 
 #endif //end CREATURE_H define
