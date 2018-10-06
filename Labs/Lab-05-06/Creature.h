@@ -12,21 +12,25 @@
 
 #include <string>
 #include <iostream>
-#include <iomanip>
 #include <fstream>
 using namespace std;
 
 class Creature {
 	private:
 		//Variables:
-		string creatureName;
-		string creatureDescription;
-		double upkeepMonthlyCost;
-		bool isDangerous;
+		string creature_Name;
+		string creature_Description;
+		double creature_Upkeep;
+		bool creature_IsDangerous;
 
 	public:
 		//Default Constructor
 		Creature ();
+
+		//Constructor from filename
+		Creature (string);
+
+		//Auto creation constructors
 		Creature (string, string, float, bool);
 		Creature (string, string, double, bool);
 		Creature (char*, char*, float, bool);
@@ -36,57 +40,57 @@ class Creature {
 
 		/*
 		 Parameters:	nothing (void)
-		 Returns:		nothing (void)
-		 Purpose:		-
+		 Returns:		string
+		 Purpose:		Returns the creatures name
 		 */
 		string getName ();
 
 		/*
 		 Parameters:	nothing (void)
-		 Returns:		nothing (void)
-		 Purpose:		-
+		 Returns:		string
+		 Purpose:		Returns the creatures description
 		 */
 		string getDescription ();
 
 		/*
 		 Parameters:	nothing (void)
-		 Returns:		nothing (void)
-		 Purpose:		-
+		 Returns:		bool
+		 Purpose:		Returns if the creature is dangerous
 		 */
 		bool getDangerous ();
 
 		/*
 		 Parameters:	nothing (void)
-		 Returns:		nothing (void)
-		 Purpose:		-
+		 Returns:		double
+		 Purpose:		Returns the monthly cost of upkeep for the creature
 		 */
 		double getCost ();
 
 		/*
-		 Parameters:	nothing (void)
+		 Parameters:	string
 		 Returns:		nothing (void)
-		 Purpose:		-
+		 Purpose:		Set creature name
 		 */
-		void setName ();
+		void setName (string);
 
 		/*
-		 Parameters:	nothing (void)
+		 Parameters:	string
 		 Returns:		nothing (void)
-		 Purpose:		-
+		 Purpose:		Set creature description
 		 */
 		void setDescription (string);
 
 		/*
-		 Parameters:	nothing (void)
+		 Parameters:	bool
 		 Returns:		nothing (void)
-		 Purpose:		-
+		 Purpose:		Sets if the creature is dangerous or not
 		 */
 		void setDangerous (bool);
 
 		/*
-		 Parameters:	nothing (void)
+		 Parameters:	double
 		 Returns:		nothing (void)
-		 Purpose:		-
+		 Purpose:		Sets the monthly cost of upkeep for the creature
 		 */
 		void setCost (double);
 
@@ -98,12 +102,12 @@ class Creature {
 		void printCreature ();
 
 		/*
-		 Parameters:	nothing (void)
+		 Parameters:	either a string to the filename or a stream to a file
 		 Returns:		nothing (void)
-		 Purpose:		a function to print a single creature’s information to the file – unformatted – one piece of
-		 information per line. This is so the program would be able to read the creature’s information back later.
+		 Purpose:		export creature data one line at a time for later loading
 		 */
 		void printCreatureToFile (ofstream&);
+		void printCreatureToFileNoFlush (ofstream&);
 		void printCreatureToFile (string);
 };
 
