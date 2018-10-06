@@ -135,10 +135,50 @@ void enterMagicalCreatureFromFile (LinkedList<Creature>* listToAddTo) {
  confirmation should be printed out that the creature was removed. This function does not return anything.
  */
 /*
- printCreatures – this function should print “THERE ARE NO CREATURES AT YOUR ZOO!” if there are no creatures in the
- linked list. If there are creatures in the linked list then it should print each creature’s detail in the list.
- This function does not return anything.
+ * Parameters:	a pointer to a linked list of Creatures
+ * Returns:	nothing (void)
+ * Purpose:	remove a creature from the linked list
  */
+void deleteCreature (LinkedList<Creature>* creatureLinkedList) {
+	Creature* creatureBuffer;
+	//If there list is empty, tell the user then end function
+	if(creatureLinkedList->getLength == 0) {
+		cout << "THERE ARE NO CREATURES AT YOUR ZOO!" << "\n" << flush;
+		return;
+	}
+	//open a stream to the file and export the data to it
+	cout << setfill(' ');
+	for (size_t i = 0; i < creatureLinkedList->getLength; i++) {
+		creatureBuffer = creatureLinkedList->getNodeValue(i);
+		cout << "----          " << setw(4) << left << i + 1 << setw(0) << right << "          ----" << "\n";
+		creatureBuffer->printCreature();
+		cout << "----          " << setw(4) << left << i + 1 << setw(0) << right << "          ----" << "\n";
+		cout << "\n" << "\n";
+	}
+	cout << flush;
+
+	//TODO: actual code
+
+}
+
+/*
+ * Parameters:	a pointer to a linked list of Creatures
+ * Returns:	nothing (void)
+ * Purpose:	print out creature data to the cout buffer
+ */
+void printCreatures (LinkedList<Creature>* creatureLinkedList) {
+	Creature* creatureBuffer;
+	//If there list is empty, tell the user then end function
+	if(creatureLinkedList->getLength == 0) {
+		cout << "THERE ARE NO CREATURES AT YOUR ZOO!" << "\n" << flush;
+		return;
+	}
+	//open a stream to the file and export the data to it
+	for (size_t i = 0; i < creatureLinkedList->getLength; i++) {
+		creatureBuffer = creatureLinkedList->getNodeValue(i);
+		creatureBuffer->printCreature();
+	}
+}
 
 /*
  * Parameters:	a pointer to a linked list of Creatures
