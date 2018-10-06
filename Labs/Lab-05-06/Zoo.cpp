@@ -16,6 +16,49 @@
 
 using namespace std;
 
+void enterMagicalCreature(LinkedList* listToAddTo){
+	bool shouldRepeat;
+
+	string nameBuffer;
+	string descBuffer;
+	double upkeepBuffer;
+	bool dangerBuffer;
+	do{
+		getline(cin, nameBuffer);
+		getline(cin, descBuffer);
+		cin >> upkeepBuffer;
+		getline(cin, nameBuffer);
+
+		listToAddTo->push(new Creature());
+
+	}while(shouldRepeat == true);
+}
+this function should ask the user for the creature’s name, description, if it is dangerous, and the cost per month to care fo rhte creature.
+Then it should create a new creature object with this data.
+Then, it should append the creature object to the linked creature list.
+Then it should print a confirmation that the creature (print creature’s name) has been added to the zoo.
+The function should then ask the user if they want to add more creatures.
+If they answer yes, then repeat this process. Otherwise, the function should end and it doesn’t return any data.
+
+
+ enterMagicalCreatureFromFile – this function should ask the user for the name of the file they want to read from. Then, if
+the file is able to be opened (print a message if can’t be opened) then read the creature data from the file (one at a time)
+with a loop and after reading in one creature, create a new creature object with this data, then append the creature to the
+creature linked list. After reading all the creatures from the file & adding them to the linked list, print how many creatures
+FROM THE FILE were added to the zoo. This may or may not be the current number of creatures in the linked list! This
+function does not return any data.
+ deleteCreature – this function should first print a numbered list of the names of all the creatures in the linked list. Then ask
+the user which creature number they want to delete. Then the creature should be removed from the linked list. A
+confirmation should be printed out that the creature was removed. This function does not return anything.
+ printCreatures – this function should print “THERE ARE NO CREATURES AT YOUR ZOO!” if there are no creatures in the
+linked list. If there are creatures in the linked list then it should print each creature’s detail in the list. This function does
+not return anything.
+ saveCreaturesToFile – this function should either print “THERE ARE NO CREATURES AT YOUR ZOO!” if there are no
+creatures in the linked list. If there are creatures in the linked list then it should ask the user for the filename that they wish
+to use to save the creatures and then use a loop to get a creature from each node, and then call this creature’s
+printCreatureToFile function, sending the filename to the function.
+
+
 int main () {
 	const string STANDARDFILEEXTENTION = ".txt";
 	long menuChoice;
