@@ -18,24 +18,40 @@
 
 using namespace std;
 
+/*
+ * Parameters:	some text (string) and a suffix to check for (string)
+ * Returns:	nothing (void)
+ * Purpose:	allow user to enter the details for creatures and adds them to the linked list
+ */
 bool has_suffix (const string &str, const string &suffix) {
-	return str.size() >= suffix.size() && str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
+	return (str.size() >= suffix.size()) && str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
 }
 
+
+/*
+ * Parameters:	a pointer to a linked list of Creatures
+ * Returns:	nothing (void)
+ * Purpose:	allow user to enter the details for creatures and adds them to the linked list
+ */
 void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
-	bool shouldRepeat;
-	int shouldRepeatSemiBuffer;
+	//Menu variables
 	string shouldRepeatBuffer;
+	int shouldRepeatSemiBuffer;
+	bool shouldRepeat;
 	const int numYesSyn = 3;
 	const int numNoSyn = 3;
 	const string yesSyn[numYesSyn] = {"yes", "true", "y"};
 	const string noSyn[numNoSyn] = {"no", "false", "n"};
+
+	//creature input variables
 	string nameBuffer;
 	string descBuffer;
 	double upkeepBuffer;
 	string dangerBuffer;
 	int isDangerSemiBuffer;
 	bool isDangerConverted;
+
+	//Loop while the user wants more creatures
 	do {
 		cout << "Enter creature name: " << flush;
 		getline(cin, nameBuffer);
@@ -55,10 +71,13 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 			cout << "Enter monthly upkeep cost: " << flush;
 			cin >> upkeepBuffer;
 		}
+		cin.ignore();
 
 		cout << "Is the creature dangerous: " << flush;
 		getline(cin, dangerBuffer);
+		//Convert to lowercase
 		transform(dangerBuffer.begin(), dangerBuffer.end(), dangerBuffer.begin(), ::tolower);
+		//convert from text to int, 1 for true, 0 for false, -1 for unknown
 		isDangerSemiBuffer = (dangerBuffer.compare(yesSyn[0]) == 0 || dangerBuffer.compare(yesSyn[1]) == 0 || dangerBuffer.compare(yesSyn[2]) == 0) ? 1 : -1;
 		isDangerSemiBuffer = (dangerBuffer.compare(noSyn[0]) == 0 || dangerBuffer.compare(noSyn[1]) == 0 || dangerBuffer.compare(noSyn[2]) == 0) ? 0 : -1;
 		while (isDangerSemiBuffer == -1) {
@@ -76,9 +95,11 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 			isDangerSemiBuffer = (dangerBuffer.compare(yesSyn[0]) == 0 || dangerBuffer.compare(yesSyn[1]) == 0 || dangerBuffer.compare(yesSyn[2]) == 0) ? 1 : -1;
 			isDangerSemiBuffer = (dangerBuffer.compare(noSyn[0]) == 0 || dangerBuffer.compare(noSyn[1]) == 0 || dangerBuffer.compare(noSyn[2]) == 0) ? 0 : -1;
 		}
+		//actually convert from int to bool and add to the list
 		isDangerConverted = isDangerSemiBuffer == 0 ? false : true;
 		listToAddTo->appendNode(Creature(nameBuffer, descBuffer, upkeepBuffer, isDangerConverted));
 
+		//Output some confirmation for the user
 		cout << "CREATURE ADDED:" << "\n";
 		cout << "Name:" << "\n";
 		cout << "\t" << "INFO" << "\n";
@@ -90,6 +111,7 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 		cout << "\t" << (isDangerConverted ? "Yes" : "No") << "\n";
 		cout << "\n" << flush;
 
+		//See if the user wants to enter more user, then do standard data validation
 		cout << "Do you want to enter more creatures?";
 		getline(cin, shouldRepeatBuffer);
 		transform(shouldRepeatBuffer.begin(), shouldRepeatBuffer.end(), shouldRepeatBuffer.begin(), ::tolower);
@@ -115,25 +137,71 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 	} while (shouldRepeat == true);
 }
 
-void enterMagicalCreatureFromFile (LinkedList<Creature>* listToAddTo) {
-
-	/*–
-	 * this function should ask the user for the name of the file they want to read from.
-	 * Then, if the file is able to be opened (print a message if can’t be opened)  read the creature data from the file (one at a time) with a loop and
-	 * after reading in one creature, create a new creature object with this data, then append the creature to the
-	 * creature linked list.
-	 * After reading all the creatures from the file & adding them to the linked list
-	 * print how many creatures
-	 * FROM THE FILE were added to the zoo. This may or may not be the current number of creatures in the linked list!
-	 * This function does not return any data.
-	 */
-}
 
 /*
- deleteCreature – this function should first print a numbered list of the names of all the creatures in the linked list. Then ask
- the user which creature number they want to delete. Then the creature should be removed from the linked list. A
- confirmation should be printed out that the creature was removed. This function does not return anything.
+ * Parameters:	a pointer to a linked list of Creatures
+ * Returns:	nothing (void)
+ * Purpose:	allow user to enter file name and import creates from the file
  */
+void enterMagicalCreatureFromFile (LinkedList<Creature>* listToAddTo) {
+	string filename;
+	ifstream importFileStream;
+
+	const int numYesSyn = 3;
+	const int numNoSyn = 3;
+	const string yesSyn[numYesSyn] = {"yes", "true", "y"};
+	const string noSyn[numNoSyn] = {"no", "false", "n"};
+
+	string importNameBuffer;
+	string importDescriptionBuffer;
+	float importUpkeepConverted;
+	string importDangerousBuffer;
+	string dangerousErrorBackup;
+	int isDangerSemiBuffer;
+	bool importDangerousConverted;
+	long importedCreatureCount = 0;
+
+	//get filename from user
+	cout << "Enter file name to load creatures from: " << flush;
+	getline(cin, filename);
+	importFileStream.open(filename);
+	//if it fails to open, ask the user for a new filename and try again
+	while (importFileStream.is_open() != true) {
+		cout << "invalid input" << "\n";
+		cout << "Enter file name to load creatures from: " << flush;
+		getline(cin, filename);
+		importFileStream.open(filename);
+	}
+
+	//bröther may i have some lööps
+	while (true) {
+		getline(importFileStream, importNameBuffer);
+		getline(importFileStream, importDescriptionBuffer);
+		importFileStream >> importUpkeepConverted;
+		importFileStream.ignore();
+		getline(importFileStream, importDangerousBuffer);
+		dangerousErrorBackup = importDangerousBuffer;
+		transform(importDangerousBuffer.begin(), importDangerousBuffer.end(), importDangerousBuffer.begin(), ::tolower);
+		isDangerSemiBuffer = (importDangerousBuffer.compare(yesSyn[0]) == 0 || importDangerousBuffer.compare(yesSyn[1]) == 0 || importDangerousBuffer.compare(yesSyn[2]) == 0) ? 1 : -1;
+		isDangerSemiBuffer = (importDangerousBuffer.compare(noSyn[0]) == 0 || importDangerousBuffer.compare(noSyn[1]) == 0 || importDangerousBuffer.compare(noSyn[2]) == 0) ? 0 : -1;
+		if(isDangerSemiBuffer == -1) {
+			cerr << "IMPORT ERRROR - \"" << dangerousErrorBackup << "\" is not valid";
+			throw (dangerousErrorBackup);
+			return;
+		}
+		importDangerousConverted = isDangerSemiBuffer == 0 ? false : true;
+		if(importFileStream.eof() == true) {
+			break;
+		}
+		listToAddTo->appendNode(Creature(importNameBuffer, importDescriptionBuffer, importUpkeepConverted, importDangerousConverted));
+		importedCreatureCount++;
+	}
+	importFileStream.close();
+	cout << "\n" << "\n";
+	cout << "Finished loading " << importedCreatureCount << ( (importedCreatureCount > 1) ? " creatures" : " creature") << "\n" << flush;
+}
+
+
 /*
  * Parameters:	a pointer to a linked list of Creatures
  * Returns:	nothing (void)
@@ -141,6 +209,7 @@ void enterMagicalCreatureFromFile (LinkedList<Creature>* listToAddTo) {
  */
 void deleteCreature (LinkedList<Creature>* creatureLinkedList) {
 	Creature* creatureBuffer;
+	long numberPicked;
 	//If there list is empty, tell the user then end function
 	if(creatureLinkedList->getLength == 0) {
 		cout << "THERE ARE NO CREATURES AT YOUR ZOO!" << "\n" << flush;
@@ -150,15 +219,30 @@ void deleteCreature (LinkedList<Creature>* creatureLinkedList) {
 	cout << setfill(' ');
 	for (size_t i = 0; i < creatureLinkedList->getLength; i++) {
 		creatureBuffer = creatureLinkedList->getNodeValue(i);
-		cout << "----          " << setw(4) << left << i + 1 << setw(0) << right << "          ----" << "\n";
+		cout << "----           " << setw(4) << left << i + 1 << setw(0) << right << "           ----" << "\n";
 		creatureBuffer->printCreature();
-		cout << "----          " << setw(4) << left << i + 1 << setw(0) << right << "          ----" << "\n";
+		cout << "----           " << setw(4) << left << i + 1 << setw(0) << right << "           ----" << "\n";
 		cout << "\n" << "\n";
 	}
 	cout << flush;
 
-	//TODO: actual code
-
+	cout << "Enter the number of the creature to remove: ";
+	cin >> numberPicked;
+	while (numberPicked < 1 || numberPicked > creatureLinkedList->getLength() || cin.fail()) {
+		if(cin.fail()) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "INVALID INPUT - only enter a number" << "\n";
+		}
+		if(numberPicked < 1 || numberPicked > creatureLinkedList->getLength()) {
+			cout << "INVALID INPUT -  only enter a number between 1  and " << creatureLinkedList->getLength() << ", inclusive" << "\n";
+		}
+		cout << "Enter the number of the creature to remove: ";
+		cin >> numberPicked;
+	}
+	cout << "Successfuly removed creature #" << numberPicked << ", \"" << creatureLinkedList->getNodeValue(numberPicked - 1).getName() << "\"" << "\n";
+	creatureLinkedList->deleteNode(numberPicked - 1);
+	cout << flush;
 }
 
 /*
