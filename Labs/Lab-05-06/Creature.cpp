@@ -3,7 +3,7 @@
  *	Title:	CSC1310 - Lab 05/06 - Creature Class
  *	Authors:	Rus Hoffman and Braedin Jared
  *	Date:	October 3, 2018
- *	Purpose:	memebigboy
+ *	Purpose:	Practice making classes
  *
  * * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -76,90 +76,43 @@ Creature::Creature (char* inputName, char* inputDescription, float inputUpkeepCo
 	creature_IsDangerous = inputIsDangerous;
 }
 
-//Destructor
 Creature::~Creature () {
-#if defined(DEBUGLOGGING)
-	clog << "DEALLOCATING CREATURE" << endl;
-#endif
+
 }
 
-/*
- Parameters:	nothing (void)
- Returns:		nothing (void)
- Purpose:		-
- */
+
 string Creature::getName () {
 	return creature_Name;
 }
 
-/*
- Parameters:	nothing (void)
- Returns:		nothing (void)
- Purpose:		-
- */
 string Creature::getDescription () {
 	return creature_Name;
 }
 
-/*
- Parameters:	nothing (void)
- Returns:		nothing (void)
- Purpose:		-
- */
 bool Creature::getDangerous () {
 	return creature_IsDangerous;
 }
 
-/*
- Parameters:	nothing (void)
- Returns:		nothing (void)
- Purpose:		-
- */
 double Creature::getCost () {
 	return creature_Upkeep;
 }
 
-/*
- Parameters:	nothing (void)
- Returns:		nothing (void)
- Purpose:		-
- */
 void Creature::setName (string inputName) {
 	creature_Name = inputName;
 }
 
-/*
- Parameters:	nothing (void)
- Returns:		nothing (void)
- Purpose:		-
- */
 void Creature::setDescription (string inputdescription) {
 	creature_Description = inputdescription;
 }
 
-/*
- Parameters:	nothing (void)
- Returns:		nothing (void)
- Purpose:		-
- */
 void Creature::setCost (double inputCost) {
 	creature_Upkeep = inputCost;
 }
 
-/*
- Parameters:	nothing (void)
- Returns:		nothing (void)
- Purpose:		-
- */
 void Creature::setDangerous (bool inputDangerous) {
 	creature_IsDangerous = inputDangerous;
 }
 
-/*
- Parameters:	nothing (void)
- Returns:		nothing (void)
- Purpose:		a function to print a single creature's information to the screen in a nice, easy to read format
- */
 void Creature::printCreature () {
 	cout << setw(0) << setfill(' ');
 	cout << "Name: " << creature_Name << "\n";

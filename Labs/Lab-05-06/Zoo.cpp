@@ -3,7 +3,7 @@
  *	Title:	CSC1310 - Lab 05/06 - Creature Class
  *	Authors:	Rus Hoffman and Braedin Jared
  *	Date:	October 4, 2018
- *	Purpose:	memebigboy
+ *	Purpose:	Practice linked lists
  *
  * * * * * * * * * * * * * * * * * * * * * * * */
 
