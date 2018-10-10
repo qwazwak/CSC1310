@@ -164,13 +164,13 @@ void enterMagicalCreatureFromFile (LinkedList<Creature>* listToAddTo) {
 	//get filename from user
 	cout << "Enter file name to load creatures from: " << flush;
 	getline(cin, filename);
-	importFileStream.open(filename);
+	importFileStream.open(filename.c_str());
 	//if it fails to open, ask the user for a new filename and try again
 	while (importFileStream.is_open() != true) {
 		cout << "invalid input" << "\n";
 		cout << "Enter file name to load creatures from: " << flush;
 		getline(cin, filename);
-		importFileStream.open(filename);
+		importFileStream.open(filename.c_str());
 	}
 
 	//bröther may i have some lööps
@@ -208,19 +208,19 @@ void enterMagicalCreatureFromFile (LinkedList<Creature>* listToAddTo) {
  * Purpose:	remove a creature from the linked list
  */
 void deleteCreature (LinkedList<Creature>* creatureLinkedList) {
-	Creature* creatureBuffer;
+	Creature creatureBuffer;
 	long numberPicked;
 	//If there list is empty, tell the user then end function
-	if(creatureLinkedList->getLength == 0) {
+	if(creatureLinkedList->getLength() == 0) {
 		cout << "THERE ARE NO CREATURES AT YOUR ZOO!" << "\n" << flush;
 		return;
 	}
 	//open a stream to the file and export the data to it
 	cout << setfill(' ');
-	for (size_t i = 0; i < creatureLinkedList->getLength; i++) {
+	for (size_t i = 0; i < creatureLinkedList->getLength(); i++) {
 		creatureBuffer = creatureLinkedList->getNodeValue(i);
 		cout << "----           " << setw(4) << left << i + 1 << setw(0) << right << "           ----" << "\n";
-		creatureBuffer->printCreature();
+		creatureBuffer.printCreature();
 		cout << "----           " << setw(4) << left << i + 1 << setw(0) << right << "           ----" << "\n";
 		cout << "\n" << "\n";
 	}
@@ -251,16 +251,16 @@ void deleteCreature (LinkedList<Creature>* creatureLinkedList) {
  * Purpose:	print out creature data to the cout buffer
  */
 void printCreatures (LinkedList<Creature>* creatureLinkedList) {
-	Creature* creatureBuffer;
+	Creature creatureBuffer;
 	//If there list is empty, tell the user then end function
-	if(creatureLinkedList->getLength == 0) {
+	if(creatureLinkedList->getLength() == 0) {
 		cout << "THERE ARE NO CREATURES AT YOUR ZOO!" << "\n" << flush;
 		return;
 	}
 	//open a stream to the file and export the data to it
-	for (size_t i = 0; i < creatureLinkedList->getLength; i++) {
+	for (size_t i = 0; i < creatureLinkedList->getLength(); i++) {
 		creatureBuffer = creatureLinkedList->getNodeValue(i);
-		creatureBuffer->printCreature();
+		creatureBuffer.printCreature();
 	}
 }
 
@@ -273,11 +273,11 @@ void saveCreaturesToFile (LinkedList<Creature>* creatureLinkedList) {
 	string filename;
 	const string STANDARDFILEEXTENTION = ".txt";
 
-	Creature* creatureBuffer;
+	Creature creatureBuffer;
 	ofstream fileExport;
 
 	//If there list is empty, tell the user then end function
-	if(creatureLinkedList->getLength == 0) {
+	if(creatureLinkedList->getLength() == 0) {
 		cout << "THERE ARE NO CREATURES AT YOUR ZOO!" << "\n" << flush;
 		return;
 	}
@@ -302,10 +302,10 @@ void saveCreaturesToFile (LinkedList<Creature>* creatureLinkedList) {
 	}
 
 	//open a stream to the file and export the data to it
-	fileExport.open(filename);
-	for (size_t i = 0; i < creatureLinkedList->getLength; i++) {
+	fileExport.open(filename.c_str());
+	for (size_t i = 0; i < creatureLinkedList->getLength(); i++) {
 		creatureBuffer = creatureLinkedList->getNodeValue(i);
-		creatureBuffer->printCreatureToFile(filename);
+		creatureBuffer.printCreatureToFile(filename);
 	}
 	fileExport.close();
 }
