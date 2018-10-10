@@ -67,7 +67,7 @@ class LinkedList {
 			for (int i = 0; i <= index; i++) {
 				n = n->next;
 			}
-			return n;
+			return n->value;
 		}
 
 		/*
