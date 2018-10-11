@@ -297,7 +297,7 @@ int main () {
 		cout << "3.  Print Creatures" << "\n";
 		cout << "4.  Exit" << "\n";
 
-		cout << "CHOOSE 1-7:  " << flush;
+		cout << "CHOOSE 1-4:  " << flush;
 		cin >> menuChoice;
 		while (cin.fail() || menuChoice < 1 || menuChoice > 7) {
 			if(cin.fail()) {
@@ -307,10 +307,10 @@ int main () {
 			}
 			else {
 				if(menuChoice < 1 || menuChoice > 7) {
-					cout << "only enter a number between 1 and 7, inclusive" << "\n";
+					cout << "only enter a number between 1 and 4, inclusive" << "\n";
 				}
 			}
-			cout << "CHOOSE 1-7:  " << flush;
+			cout << "CHOOSE 1-4:  " << flush;
 			cin >> menuChoice;
 		}
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
