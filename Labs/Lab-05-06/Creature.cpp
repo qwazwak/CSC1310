@@ -99,11 +99,15 @@ void Creature::setDangerous (bool inputDangerous) {
 
 void Creature::printCreature () {
 	cout << setw(0) << setfill(' ');
-	cout << "Name: " << creature_Name << "\n";
-	cout << "Description: " << creature_Description << "\n";
-	cout << "Monthly upkeep costs: " << creature_Upkeep << "\n";
-	cout << "Is dangerous? " << (creature_IsDangerous ? ("Yes") : ("No")) << "\n";
-	cout << flush;
+	cout << "Name:" << "\n";
+	cout << "\t" << creature_Name << "\n";
+	cout << "Description:" << "\n";
+	cout << "\t" << creature_Description << "\n";
+	cout << "Is it dangerous:" << "\n";
+	cout << "\t" << (creature_IsDangerous ? "Yes" : "No") << "\n";
+	cout << "Monthly upkeep:" << "\n";
+	cout << "\t" << creature_Upkeep << "\n";
+	cout << "\n" << flush;
 }
 
 void Creature::printCreatureToFile (string fileName) {

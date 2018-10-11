@@ -15,6 +15,7 @@ release : CCFLAGS  += -O3
 release	: Zoo.exe
 
 #Debug settings: unused: -fno-access-control -Q
+debug : clean
 #C++ Compiler Flags
 debug	:	CXXFLAGS += -DDEBUG -Wchar-subscripts -pedantic -g -Wmain -Wuninitialized -Wall -Wextra -fexceptions -O
 #C Compiler Flags
@@ -25,7 +26,7 @@ debug	:	executable
 
 
 #Cleanup! Deletes old exe and object files
-clean	:	#Program-01-Movies.exe
+clean	:	#clean up, nothing to build
 		del *.o 
 		del Zoo.exe
 

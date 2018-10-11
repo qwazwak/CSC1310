@@ -7,6 +7,7 @@
  *
  * * * * * * * * * * * * * * * * * * * * * * * */
 
+//TODO: fix print all creatures
 #include "LinkedList.h"
 #include "Creature.h"
 #include <iostream>
@@ -57,7 +58,7 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 		getline(cin, dangerBuffer);
 		//Convert to lowercase
 		//convert from text to int, 1 for true, 0 for false, -1 for unknown
-		while (dangerBuffer.length() != 1 || ((dangerBuffer.at(0) == 'y') ? false : (dangerBuffer.at(0) == 'n') ? false : true)) {
+		while (dangerBuffer.length() != 1 || ( (dangerBuffer.at(0) == 'y') ? false : (dangerBuffer.at(0) == 'n') ? false : true)) {
 			cout << "invalid input, be sure to only enter either 'y' for yes or 'n' for no" << "\n";
 			cout << "Is the creature dangerous: " << flush;
 			getline(cin, dangerBuffer);
@@ -65,7 +66,6 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 		}
 		//actually convert from int to bool and add to the list
 		isDangerConverted = dangerBuffer.at(0) == 'y' ? true : false;
-
 
 		cout << "Enter monthly upkeep cost: " << flush;
 		cin >> upkeepBuffer;
@@ -84,7 +84,6 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 		}
 		cin.ignore();
 
-
 		listToAddTo->appendNode(Creature(nameBuffer, descBuffer, upkeepBuffer, isDangerConverted));
 
 		//Output some confirmation for the user
@@ -102,13 +101,13 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 		//See if the user wants to enter more user, then do standard data validation
 		cout << "Do you want to enter more creatures? : ";
 		getline(cin, shouldRepeatBuffer);
-		while (shouldRepeatBuffer.length() != 1 || ((dangerBuffer.at(0) == 'y') ? false : (dangerBuffer.at(0) == 'n') ? false : true)) {
+		while (shouldRepeatBuffer.length() != 1 || ( (dangerBuffer.at(0) == 'y') ? false : (dangerBuffer.at(0) == 'n') ? false : true)) {
 			cout << "invalid input, be sure to only enter either 'y' for yes or 'n' for no" << "\n";
 			cout << "Do you want to enter more creatures? : " << flush;
 			getline(cin, shouldRepeatBuffer);
 			transform(shouldRepeatBuffer.begin(), shouldRepeatBuffer.end(), shouldRepeatBuffer.begin(), ::tolower);
 		}
-		shouldRepeat = shouldRepeatBuffer.compare("y") ? true : false;
+		shouldRepeat = shouldRepeatBuffer.at(0) == 'y' ? true : false;
 
 	} while (shouldRepeat == true);
 }
@@ -159,12 +158,11 @@ void enterMagicalCreatureFromFile (LinkedList<Creature>* listToAddTo) {
 		importUpkeepConverted = atof(importUpkeepBuffer.c_str());
 		importDangerousConverted = importDangerousBuffer == 1 ? true : false;
 		listToAddTo->appendNode(Creature(importNameBuffer, importDescriptionBuffer, importUpkeepConverted, importDangerousConverted));
-					importedCreatureCount++;
+		importedCreatureCount++;
 		if(importFileStream.eof()) {
 			shouldContinueLooping = false;
 		}
 		if(shouldContinueLooping == true) {
-
 
 		}
 	}
@@ -232,6 +230,7 @@ void printCreatures (LinkedList<Creature>* creatureLinkedList) {
 	for (size_t i = 0; i < creatureLinkedList->getLength(); i++) {
 		creatureBuffer = creatureLinkedList->getNodeValue(i);
 		creatureBuffer.printCreature();
+		cout << "\n\n";
 	}
 }
 
@@ -320,50 +319,41 @@ int main () {
 		switch (menuChoice) {
 			case 1:
 				int menuChoice2;
+				cin.clear();
+				cout << "\n" << "\n" << "\n";
+				cout << "What would you like to do?" << "\n";
+				cout << "1.  Enter Manually" << "\n";
+				cout << "2.  Enter from file" << "\n";
 
-				do {
-					cin.clear();
-					cout << "\n" << "\n" << "\n";
-					cout << "What would you like to do?" << "\n";
-					cout << "1.  Enter Manually" << "\n";
-					cout << "2.  Enter from file" << "\n";
-					cout << "3.  Exit" << "\n";
-
-					cout << "CHOOSE 1-7:  " << flush;
+				cout << "CHOOSE 1-2:  " << flush;
+				cin >> menuChoice;
+				while (cin.fail() || menuChoice < 1 || menuChoice > 2) {
+					if(cin.fail()) {
+						cin.clear();
+						cin.ignore();
+						cout << "an error has occurred, try again" << "\n";
+					}
+					else {
+						if(menuChoice < 1 || menuChoice > 2) {
+							cout << "only enter a number between 1 and 2, inclusive" << "\n";
+						}
+					}
+					cout << "CHOOSE 1-2:  " << flush;
 					cin >> menuChoice;
-					while (cin.fail() || menuChoice < 1 || menuChoice > 7) {
-						if(cin.fail()) {
-							cin.clear();
-							cin.ignore();
-							cout << "an error has occurred, try again" << "\n";
-						}
-						else {
-							if(menuChoice < 1 || menuChoice > 7) {
-								cout << "only enter a number between 1 and 7, inclusive" << "\n";
-							}
-						}
-						cout << "CHOOSE 1-7:  " << flush;
-						cin >> menuChoice;
-					}
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-					cout << "\n";
+				}
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "\n";
 
-					switch (menuChoice) {
-						case 1:
-							enterMagicalCreature(creatureList);
-							break;
-						case 2:
-							enterMagicalCreatureFromFile(creatureList);
-							break;
-						case 3:
-							continue;
-							break;
-						default:
-							continue;
-							break;
-					}
-				} while (menuChoice != 3);
-
+				switch (menuChoice) {
+					case 1:
+						enterMagicalCreature(creatureList);
+						break;
+					case 2:
+						enterMagicalCreatureFromFile(creatureList);
+						break;
+					default:
+						continue;
+				}
 				break;
 			case 2:
 				deleteCreature(creatureList);
