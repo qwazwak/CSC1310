@@ -15,6 +15,7 @@
 #include <string>
 #include <cstring>
 #include <algorithm>
+#include <cstdlib>
 
 using namespace std;
 
@@ -27,7 +28,6 @@ bool has_suffix (const string &str, const string &suffix) {
 	return (str.size() >= suffix.size()) && str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
 }
 
-
 /*
  * Parameters:	a pointer to a linked list of Creatures
  * Returns:	nothing (void)
@@ -38,17 +38,12 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 	string shouldRepeatBuffer;
 	int shouldRepeatSemiBuffer;
 	bool shouldRepeat;
-	const int numYesSyn = 3;
-	const int numNoSyn = 3;
-	const string yesSyn[numYesSyn] = {"yes", "true", "y"};
-	const string noSyn[numNoSyn] = {"no", "false", "n"};
 
 	//creature input variables
 	string nameBuffer;
 	string descBuffer;
 	double upkeepBuffer;
 	string dangerBuffer;
-	int isDangerSemiBuffer;
 	bool isDangerConverted;
 
 	//Loop while the user wants more creatures
@@ -57,6 +52,21 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 		getline(cin, nameBuffer);
 		cout << "Enter creature description: " << flush;
 		getline(cin, descBuffer);
+
+		cout << "Is the creature dangerous: " << flush;
+		getline(cin, dangerBuffer);
+		//Convert to lowercase
+		//convert from text to int, 1 for true, 0 for false, -1 for unknown
+		while (dangerBuffer.length() != 1 || ((dangerBuffer.at(0) == 'y') ? false : (dangerBuffer.at(0) == 'n') ? false : true)) {
+			cout << "invalid input, be sure to only enter either 'y' for yes or 'n' for no" << "\n";
+			cout << "Is the creature dangerous: " << flush;
+			getline(cin, dangerBuffer);
+			transform(dangerBuffer.begin(), dangerBuffer.end(), dangerBuffer.begin(), ::tolower);
+		}
+		//actually convert from int to bool and add to the list
+		isDangerConverted = dangerBuffer.at(0) == 'y' ? true : false;
+
+
 		cout << "Enter monthly upkeep cost: " << flush;
 		cin >> upkeepBuffer;
 		while (cin.fail() || upkeepBuffer < 0) {
@@ -65,78 +75,43 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 				cin.clear();
 				cin.ignore();
 			}
-			else if(upkeepBuffer < 0) {
-				cout << "invalid input - only enter a number greater than or equal to zero" << "\n";
-			}
+			else
+				if(upkeepBuffer < 0) {
+					cout << "invalid input - only enter a number greater than or equal to zero" << "\n";
+				}
 			cout << "Enter monthly upkeep cost: " << flush;
 			cin >> upkeepBuffer;
 		}
 		cin.ignore();
 
-		cout << "Is the creature dangerous: " << flush;
-		getline(cin, dangerBuffer);
-		//Convert to lowercase
-		transform(dangerBuffer.begin(), dangerBuffer.end(), dangerBuffer.begin(), ::tolower);
-		//convert from text to int, 1 for true, 0 for false, -1 for unknown
-		isDangerSemiBuffer = (dangerBuffer.compare(yesSyn[0]) == 0 || dangerBuffer.compare(yesSyn[1]) == 0 || dangerBuffer.compare(yesSyn[2]) == 0) ? 1 : -1;
-		isDangerSemiBuffer = (dangerBuffer.compare(noSyn[0]) == 0 || dangerBuffer.compare(noSyn[1]) == 0 || dangerBuffer.compare(noSyn[2]) == 0) ? 0 : -1;
-		while (isDangerSemiBuffer == -1) {
-			cout << "invalid input, be sure to only enter one of the displayed options" << "\n";
-			cout << "Options: ";
-			for (size_t i = 0; i < numYesSyn; i++) {
-				cout << noSyn[i] << ", ";
-			}
-			for (size_t i = 0; i < numNoSyn; i++) {
-				cout << (i + 1 < numNoSyn) ? (noSyn[i] + ", ") : (noSyn[i]);
-			}
-			cout << "Is the creature dangerous: " << flush;
-			getline(cin, dangerBuffer);
-			transform(dangerBuffer.begin(), dangerBuffer.end(), dangerBuffer.begin(), ::tolower);
-			isDangerSemiBuffer = (dangerBuffer.compare(yesSyn[0]) == 0 || dangerBuffer.compare(yesSyn[1]) == 0 || dangerBuffer.compare(yesSyn[2]) == 0) ? 1 : -1;
-			isDangerSemiBuffer = (dangerBuffer.compare(noSyn[0]) == 0 || dangerBuffer.compare(noSyn[1]) == 0 || dangerBuffer.compare(noSyn[2]) == 0) ? 0 : -1;
-		}
-		//actually convert from int to bool and add to the list
-		isDangerConverted = isDangerSemiBuffer == 0 ? false : true;
+
 		listToAddTo->appendNode(Creature(nameBuffer, descBuffer, upkeepBuffer, isDangerConverted));
 
 		//Output some confirmation for the user
 		cout << "CREATURE ADDED:" << "\n";
 		cout << "Name:" << "\n";
-		cout << "\t" << "INFO" << "\n";
+		cout << "\t" << nameBuffer << "\n";
 		cout << "Description:" << "\n";
-		cout << "\t" << "INFO" << "\n";
-		cout << "Monthly upkeep:" << "\n";
-		cout << "\t" << "INFO" << "\n";
+		cout << "\t" << descBuffer << "\n";
 		cout << "Is it dangerous:" << "\n";
 		cout << "\t" << (isDangerConverted ? "Yes" : "No") << "\n";
+		cout << "Monthly upkeep:" << "\n";
+		cout << "\t" << upkeepBuffer << "\n";
 		cout << "\n" << flush;
 
 		//See if the user wants to enter more user, then do standard data validation
-		cout << "Do you want to enter more creatures?";
+		cout << "Do you want to enter more creatures? : ";
 		getline(cin, shouldRepeatBuffer);
-		transform(shouldRepeatBuffer.begin(), shouldRepeatBuffer.end(), shouldRepeatBuffer.begin(), ::tolower);
-		shouldRepeatSemiBuffer = (shouldRepeatBuffer.compare(yesSyn[0]) == 0 || shouldRepeatBuffer.compare(yesSyn[1]) == 0 || shouldRepeatBuffer.compare(yesSyn[2]) == 0) ? 1 : -1;
-		shouldRepeatSemiBuffer = (shouldRepeatBuffer.compare(noSyn[0]) == 0 || shouldRepeatBuffer.compare(noSyn[1]) == 0 || shouldRepeatBuffer.compare(noSyn[2]) == 0) ? 0 : -1;
-		while (shouldRepeatSemiBuffer == -1 || cin.fail()) {
-			cout << "invalid input, be sure to only enter one of the displayed options" << "\n";
-			cout << "Options: ";
-			for (size_t i = 0; i < numYesSyn; i++) {
-				cout << noSyn[i] << ", ";
-			}
-			for (size_t i = 0; i < numNoSyn; i++) {
-				cout << (i + 1 < numNoSyn) ? (noSyn[i] + ", ") : (noSyn[i]);
-			}
-			cout << "Do you want to enter more creatures?";
+		while (shouldRepeatBuffer.length() != 1 || ((dangerBuffer.at(0) == 'y') ? false : (dangerBuffer.at(0) == 'n') ? false : true)) {
+			cout << "invalid input, be sure to only enter either 'y' for yes or 'n' for no" << "\n";
+			cout << "Do you want to enter more creatures? : " << flush;
 			getline(cin, shouldRepeatBuffer);
 			transform(shouldRepeatBuffer.begin(), shouldRepeatBuffer.end(), shouldRepeatBuffer.begin(), ::tolower);
-			shouldRepeatSemiBuffer = (shouldRepeatBuffer.compare(yesSyn[0]) == 0 || shouldRepeatBuffer.compare(yesSyn[1]) == 0 || shouldRepeatBuffer.compare(yesSyn[2]) == 0) ? 1 : -1;
-			shouldRepeatSemiBuffer = (shouldRepeatBuffer.compare(noSyn[0]) == 0 || shouldRepeatBuffer.compare(noSyn[1]) == 0 || shouldRepeatBuffer.compare(noSyn[2]) == 0) ? 0 : -1;
 		}
-		shouldRepeat = shouldRepeatSemiBuffer == 0 ? false : true;
+		shouldRepeat = shouldRepeatBuffer.compare("y") ? true : false;
 
 	} while (shouldRepeat == true);
 }
-
 
 /*
  * Parameters:	a pointer to a linked list of Creatures
@@ -146,6 +121,7 @@ void enterMagicalCreature (LinkedList<Creature>* listToAddTo) {
 void enterMagicalCreatureFromFile (LinkedList<Creature>* listToAddTo) {
 	string filename;
 	ifstream importFileStream;
+	bool shouldContinueLooping = true;
 
 	const int numYesSyn = 3;
 	const int numNoSyn = 3;
@@ -154,10 +130,10 @@ void enterMagicalCreatureFromFile (LinkedList<Creature>* listToAddTo) {
 
 	string importNameBuffer;
 	string importDescriptionBuffer;
+	string importUpkeepBuffer;
 	float importUpkeepConverted;
-	string importDangerousBuffer;
+	int importDangerousBuffer;
 	string dangerousErrorBackup;
-	int isDangerSemiBuffer;
 	bool importDangerousConverted;
 	long importedCreatureCount = 0;
 
@@ -174,33 +150,28 @@ void enterMagicalCreatureFromFile (LinkedList<Creature>* listToAddTo) {
 	}
 
 	//br�ther may i have some l��ps
-	while (true) {
+	while (shouldContinueLooping) {
 		getline(importFileStream, importNameBuffer);
 		getline(importFileStream, importDescriptionBuffer);
-		importFileStream >> importUpkeepConverted;
+		importFileStream >> importDangerousBuffer;
 		importFileStream.ignore();
-		getline(importFileStream, importDangerousBuffer);
-		dangerousErrorBackup = importDangerousBuffer;
-		transform(importDangerousBuffer.begin(), importDangerousBuffer.end(), importDangerousBuffer.begin(), ::tolower);
-		isDangerSemiBuffer = (importDangerousBuffer.compare(yesSyn[0]) == 0 || importDangerousBuffer.compare(yesSyn[1]) == 0 || importDangerousBuffer.compare(yesSyn[2]) == 0) ? 1 : -1;
-		isDangerSemiBuffer = (importDangerousBuffer.compare(noSyn[0]) == 0 || importDangerousBuffer.compare(noSyn[1]) == 0 || importDangerousBuffer.compare(noSyn[2]) == 0) ? 0 : -1;
-		if(isDangerSemiBuffer == -1) {
-			cerr << "IMPORT ERRROR - \"" << dangerousErrorBackup << "\" is not valid";
-			throw (dangerousErrorBackup);
-			return;
-		}
-		importDangerousConverted = isDangerSemiBuffer == 0 ? false : true;
-		if(importFileStream.eof() == true) {
-			break;
-		}
+		getline(importFileStream, importUpkeepBuffer);
+		importUpkeepConverted = atof(importUpkeepBuffer.c_str());
+		importDangerousConverted = importDangerousBuffer == 1 ? true : false;
 		listToAddTo->appendNode(Creature(importNameBuffer, importDescriptionBuffer, importUpkeepConverted, importDangerousConverted));
-		importedCreatureCount++;
+					importedCreatureCount++;
+		if(importFileStream.eof()) {
+			shouldContinueLooping = false;
+		}
+		if(shouldContinueLooping == true) {
+
+
+		}
 	}
 	importFileStream.close();
 	cout << "\n" << "\n";
-	cout << "Finished loading " << importedCreatureCount << ( (importedCreatureCount > 1) ? " creatures" : " creature") << "\n" << flush;
+	cout << "Finished loading " << listToAddTo->getLength() << ( (importedCreatureCount > 1) ? " creatures" : " creature") << "\n" << flush;
 }
-
 
 /*
  * Parameters:	a pointer to a linked list of Creatures
@@ -316,7 +287,7 @@ int main () {
 
 	LinkedList<Creature> *creatureList;
 
-	creatureList = new LinkedList <Creature>;
+	creatureList = new LinkedList<Creature>;
 
 	do {
 		cin.clear();
@@ -391,16 +362,15 @@ int main () {
 							continue;
 							break;
 					}
-				}
-				while(menuChoice != 3);
+				} while (menuChoice != 3);
 
 				break;
 			case 2:
 				deleteCreature(creatureList);
 				break;
 			case 3:
-				break;
 				printCreatures(creatureList);
+				break;
 			case 4:
 				continue;
 				break;
@@ -408,8 +378,7 @@ int main () {
 				continue;
 				break;
 		}
-	}
-	while(menuChoice != 4);
+	} while (menuChoice != 4);
 
 	return 0;
 }

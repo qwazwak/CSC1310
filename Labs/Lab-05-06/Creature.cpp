@@ -23,31 +23,16 @@ Creature::Creature () {
 Creature::Creature (string pathToFileAndName) {
 	string errorString = "error in loading a creature from file.\n the fourth line should only be Yes, yes, No, no, True, true, False, or false";
 	string inputBuffer;
+	int boolBuffer;
 	ifstream theStream;
-	theStream.open(pathToFileAndName);
+	theStream.open(pathToFileAndName.c_str());
 	getline(theStream, creature_Name);
 	getline(theStream, creature_Description);
-	getline(theStream, inputBuffer);
-	creature_Upkeep = stod(inputBuffer);
-	getline(theStream, inputBuffer);
-	switch (inputBuffer) {
-		case "Yes":
-		case "True":
-		case "yes":
-		case "true":
-			creature_IsDangerous = true;
-			break;
-		case "No":
-		case "False":
-		case "no":
-		case "false":
-			creature_IsDangerous = false;
-			break;
-		default:
-			cerr << "invalid creature input file format" << endl;
-			throw (errorString);
-			break;
-	}
+	creature_Upkeep = -1;
+	cin >> creature_Upkeep;
+	cin >> boolBuffer;
+	cin.ignore();
+	creature_IsDangerous = boolBuffer == 1 ? true : false;
 	theStream.close();
 }
 
@@ -79,7 +64,6 @@ Creature::Creature (char* inputName, char* inputDescription, float inputUpkeepCo
 Creature::~Creature () {
 
 }
-
 
 string Creature::getName () {
 	return creature_Name;
@@ -124,11 +108,11 @@ void Creature::printCreature () {
 
 void Creature::printCreatureToFile (string fileName) {
 	ofstream theStream;
-	theStream.open(fileName, ofstream::app | ofstream::ate);
+	theStream.open(fileName.c_str(), ofstream::app | ofstream::ate);
 	theStream << creature_Name << "\n";
 	theStream << creature_Description << "\n";
 	theStream << creature_Upkeep << "\n";
-	theStream << (creature_IsDangerous ? ("yes") : ("no")) << "\n" << flush;
+	theStream << (creature_IsDangerous ? ("1") : ("0")) << "\n" << flush;
 	theStream.close();
 }
 void Creature::printCreatureToFile (ofstream& theStream) {
@@ -136,6 +120,6 @@ void Creature::printCreatureToFile (ofstream& theStream) {
 	theStream << creature_Name << "\n";
 	theStream << creature_Description << "\n";
 	theStream << creature_Upkeep << "\n";
-	theStream << (creature_IsDangerous ? ("Yes") : ("No")) << "\n";
+	theStream << (creature_IsDangerous ? ("1") : ("0")) << "\n";
 	theStream << flush;
 }

@@ -64,7 +64,7 @@ class LinkedList {
 		T getNodeValue (int index) {
 			node *n = head;
 
-			for (int i = 0; i <= index; i++) {
+			for (int i = 0; i < index; i++) {
 				n = n->next;
 			}
 			return n->value;
@@ -89,6 +89,7 @@ class LinkedList {
 				tail->next = temp;
 				tail = temp;
 			}
+			numNodes++;
 		}
 
 		/*
