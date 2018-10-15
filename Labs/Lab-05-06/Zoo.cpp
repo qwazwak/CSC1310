@@ -280,16 +280,19 @@ void saveCreaturesToFile (LinkedList<Creature>* creatureLinkedList) {
 	fileExport.close();
 }
 
+//Main function
 int main () {
 
+	//initialize variables
 	int menuChoice;
-
 	LinkedList<Creature> *creatureList;
-
 	creatureList = new LinkedList<Creature>;
 
+	//Begin a menu cycle
 	do {
+		//Clear the console buffer
 		cin.clear();
+		//Display menu
 		cout << "\n" << "\n" << "\n";
 		cout << "What would you like to do?" << "\n";
 		cout << "1.  Add creature" << "\n";
@@ -298,7 +301,11 @@ int main () {
 		cout << "4.  Exit" << "\n";
 
 		cout << "CHOOSE 1-4:  " << flush;
+
+		//Accept a menu choice
 		cin >> menuChoice;
+
+		//Loop to verify a valid menu choice
 		while (cin.fail() || menuChoice < 1 || menuChoice > 7) {
 			if(cin.fail()) {
 				cin.clear();
@@ -316,7 +323,9 @@ int main () {
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "\n";
 
+		//Menu logic
 		switch (menuChoice) {
+			//Add creature case
 			case 1:
 				int menuChoice2;
 				cin.clear();
@@ -345,9 +354,11 @@ int main () {
 				cout << "\n";
 
 				switch (menuChoice) {
+					//Manually create creature case
 					case 1:
 						enterMagicalCreature(creatureList);
 						break;
+					//Import creature case
 					case 2:
 						enterMagicalCreatureFromFile(creatureList);
 						break;
@@ -355,18 +366,19 @@ int main () {
 						continue;
 				}
 				break;
+			//Delete creature case
 			case 2:
 				deleteCreature(creatureList);
 				break;
+			//Print creatures case
 			case 3:
 				printCreatures(creatureList);
 				break;
+			//Exit case
 			case 4:
 				continue;
-				break;
 			default:
 				continue;
-				break;
 		}
 	} while (menuChoice != 4);
 
