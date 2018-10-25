@@ -27,7 +27,7 @@ debug	:	executable
 
 #Cleanup! Deletes old exe and object files
 clean	:	#clean up, nothing to build
-		del *.o 
+		del *.o
 		del Zoo.exe
 
 
