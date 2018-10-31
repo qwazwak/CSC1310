@@ -124,8 +124,12 @@ void stringReverser(string s, int n){
 		stringReverser(s, n-1);
    	}
 }
-bool isPalindrome(string yeet){
-	return true;
+bool isPalindrome(const string &str, int start, int end){
+    if (start >= end)   
+        return true;
+    if (str[start] != str[end])
+        return false;
+    return isPalindrome(str, ++start, --end);   
 }
 int multiply(int numberAddMe, int numberCounter){
 	return numberCounter == 0 ? 0 : multiply(numberAddMe, numberCounter - 1) + numberAddMe;
