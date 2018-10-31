@@ -40,7 +40,7 @@ int main() {
 				cout << "Enter an integer:  ";
 				cin >> num;
 				//print out the result of the sumOfNumbers function here
-				
+				cout << "sum of numbers:\n\t" << sumOfNumbers(num) << "\n";
 				break;
 				
 			case 2:
@@ -55,7 +55,7 @@ int main() {
 					cout << myArray[x] << " ";
 				}
 				//print if the value that the user entered is in the array or not here
-				
+				cout << "Item was " << isMember(myArray, ARRAY_SIZE, num) ? "found" : "not found\n";
 				break;
 				
 			case 3:
@@ -64,7 +64,8 @@ int main() {
 				cin.ignore();
 				getline(cin, userString);
 				//call string reverser function here
-				
+				stringReverser(userString, userString.length());
+				cout << "reversed string:\n\t" << userString << "\n";
 				break;
 				
 			case 4:
@@ -87,7 +88,7 @@ int main() {
 				
 				//print out whether the user's string is a palindrome or not here.
 				//when you print out the user's string, print out the uppercase version that doesn't have the spaces removed.
-				
+				cout << "String (" << userString << ") is " << isPalindrome(userString) ? "a palindrome" : "not a palindrome\n";
 				break;
 				
 			case 5:
@@ -97,7 +98,8 @@ int main() {
 				cout << "\nEnter in the second integer:  ";
 				cin >> num2;
 				//print out the value returned from the multiply function here
-				
+
+				cout << "Multiplication of the numbers:\n\t" << multiply(num1, num2) << "\n";
 				break;
 				
 		}
@@ -116,11 +118,11 @@ int sumOfNumbers(int input){
 bool isMember(int* arr, int size, int key){
 	return arr(size - 1) == key ? true : isMember(arr, size - 1, key);
 }
-void stringReverser(string, int){
-
+void stringReverser(string theString, int theLength){
+	theString = theString.at(theLength - 1) + stringReverser(theString, theLength - 1);
 }
-bool isPalindrome(string){
-
+bool isPalindrome(string yeet){
+	return true;
 }
 int multiply(int numberAddMe, int numberCounter){
 	return numberCounter == 0 ? 0 : multiply(numberAddMe, numberCounter - 1) + numberAddMe;
