@@ -7,7 +7,7 @@ using namespace std;
 //function prototypes for the recursive functions
 int sumOfNumbers(int);
 bool isMember(int* array, int sizeOfArray, int valueToFind);
-void stringReverser(string&, int);
+void stringReverser(string, int);
 bool isPalindrome(string);
 int multiply(int, int);
 
@@ -55,7 +55,7 @@ int main() {
 					cout << myArray[x] << " ";
 				}
 				//print if the value that the user entered is in the array or not here
-				cout << "\nItem was " << (isMember(myArray, ARRAY_SIZE, num) ? "found" : "not found\n");
+				cout << "Item was " << isMember(myArray, ARRAY_SIZE, num) ? "found" : "not found\n";
 				break;
 				
 			case 3:
@@ -111,23 +111,19 @@ int main() {
 
 //implement the five recursive functions below!!!!
 
-int sumOfNumbers(int input) {
-	return (input == 0 ? 0 : input + sumOfNumbers(input - 1));
+
+int sumOfNumbers(int input){
+	return input == 0 ? 0 : input + sumOfNumbers(input);
 }
-bool isMember(int* arr, int size, int key) {
-	return (arr[size - 1] == key ? true : (size == 0 ? false : isMember(arr, size - 1, key)));
+bool isMember(int* arr, int size, int key){
+	return arr(size - 1) == key ? true : isMember(arr, size - 1, key);
 }
-void stringReverser(string &theString, int theLength) {
-	if(theLength != 0) {
-		string buffer;
-		buffer = theString;
-		stringReverser(buffer, theLength - 1);
-		theString = string(theString.at(theLength - 1) + buffer);
-	}
+void stringReverser(string theString, int theLength){
+	theString = theString.at(theLength - 1) + stringReverser(theString, theLength - 1);
 }
-bool isPalindrome(string yeet) {
+bool isPalindrome(string yeet){
 	return true;
 }
-int multiply(int numberAddMe, int numberCounter) {
-	return (numberCounter == 0 ? 0 : multiply(numberAddMe, numberCounter - 1) + numberAddMe);
+int multiply(int numberAddMe, int numberCounter){
+	return numberCounter == 0 ? 0 : multiply(numberAddMe, numberCounter - 1) + numberAddMe;
 }
