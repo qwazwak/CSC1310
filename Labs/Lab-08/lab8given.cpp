@@ -7,7 +7,7 @@ using namespace std;
 //function prototypes for the recursive functions
 int sumOfNumbers(int);
 bool isMember(int* array, int sizeOfArray, int valueToFind);
-void stringReverser(string, int);
+void stringReverser(string&, int);
 bool isPalindrome(string);
 int multiply(int, int);
 
@@ -55,7 +55,7 @@ int main() {
 					cout << myArray[x] << " ";
 				}
 				//print if the value that the user entered is in the array or not here
-				cout << "Item was " << isMember(myArray, ARRAY_SIZE, num) ? "found" : "not found\n";
+				cout << "\nItem was " << (isMember(myArray, ARRAY_SIZE, num) ? "found" : "not found\n");
 				break;
 				
 			case 3:
@@ -64,8 +64,9 @@ int main() {
 				cin.ignore();
 				getline(cin, userString);
 				//call string reverser function here
+				cout << "\n";
 				stringReverser(userString, userString.length());
-				cout << "reversed string:\n\t" << userString << "\n";
+				cout << "\n";
 				break;
 				
 			case 4:
@@ -111,14 +112,13 @@ int main() {
 
 //implement the five recursive functions below!!!!
 
-
-int sumOfNumbers(int input){
-	return input == 0 ? 0 : input + sumOfNumbers(input);
+int sumOfNumbers(int input) {
+	return (input == 0 ? 0 : input + sumOfNumbers(input - 1));
 }
-bool isMember(int* arr, int size, int key){
-	return arr(size - 1) == key ? true : isMember(arr, size - 1, key);
+bool isMember(int* arr, int size, int key) {
+	return (arr[size - 1] == key ? true : (size == 0 ? false : isMember(arr, size - 1, key)));
 }
-void stringReverser(string s, int n){
+void stringReverser(string &s, int n){
 	if (n >= 1){ 
 		cout << s.at(n-1);
 		stringReverser(s, n-1);
@@ -131,6 +131,6 @@ bool isPalindrome(const string &str, int start, int end){
         return false;
     return isPalindrome(str, ++start, --end);   
 }
-int multiply(int numberAddMe, int numberCounter){
-	return numberCounter == 0 ? 0 : multiply(numberAddMe, numberCounter - 1) + numberAddMe;
+int multiply(int numberAddMe, int numberCounter) {
+	return (numberCounter == 0 ? 0 : multiply(numberAddMe, numberCounter - 1) + numberAddMe);
 }
