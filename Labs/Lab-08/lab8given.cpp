@@ -118,8 +118,11 @@ int sumOfNumbers(int input){
 bool isMember(int* arr, int size, int key){
 	return arr(size - 1) == key ? true : isMember(arr, size - 1, key);
 }
-void stringReverser(string theString, int theLength){
-	theString = theString.at(theLength - 1) + stringReverser(theString, theLength - 1);
+void stringReverser(string s, int n){
+	if (n >= 1){ 
+		cout << s.at(n-1);
+		stringReverser(s, n-1);
+   	}
 }
 bool isPalindrome(string yeet){
 	return true;
