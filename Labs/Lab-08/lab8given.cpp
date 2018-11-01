@@ -8,7 +8,7 @@ using namespace std;
 int sumOfNumbers(int);
 bool isMember(int*, int, int);
 void stringReverser(string&, int);
-bool isPalindrome(string, int, int);
+bool isPalindrome(const string&, int, int);
 int multiply(int, int);
 
 const int ARRAY_SIZE = 10;
@@ -89,7 +89,7 @@ int main() {
 				
 				//print out whether the user's string is a palindrome or not here.
 				//when you print out the user's string, print out the uppercase version that doesn't have the spaces removed.
-				cout << "String (" << userString << ") is " << (isPalindrome(userString) ? "a palindrome" : "not a palindrome") << "\n";
+				cout << "String (" << userString << ") is " << (isPalindrome(userString, 0, userString.length() - 1) ? "a palindrome" : "not a palindrome") << "\n";
 				break;
 				
 			case 5:
@@ -124,7 +124,7 @@ void stringReverser(string &s, int n) {
 		stringReverser(s, n - 1);
 	}
 }
-bool isPalindrome(string str, int start, int end) {
+bool isPalindrome(const string &str, int start, int end) {
 	return (start >= end ? true : (str.at(start) != str.at(end) ? false : isPalindrome(str, ++start, --end)));
 }
 int multiply(int numberAddMe, int numberCounter) {
