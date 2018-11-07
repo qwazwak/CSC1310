@@ -1,3 +1,8 @@
+/* Title:  CSC1310 - Lab 08
+ * Authors: Rus Hoffman and Braedin Jared
+ * Purpose:  Use recursive functions
+ */
+
 #include <iostream>
 #include <cstdlib>
 #include <cctype>
@@ -74,7 +79,7 @@ int main() {
 				cout << "Enter a string and I will tell you if it is a palindrome:  ";
 				cin.ignore();
 				getline(cin, userString);
-				
+
 				//change string to be all uppercase
 				for (int x = 0; x < userString.length(); x++) {
 					userString[x] = toupper(userString[x]);
