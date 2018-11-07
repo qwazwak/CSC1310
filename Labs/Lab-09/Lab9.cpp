@@ -7,12 +7,15 @@
 using namespace std;
 
 void sortArray(size_t* arr, size_t arraySize) {
-	for (size_t maxElement = arraySize - 1; maxElement > 0; maxElement--) {
-		for (size_t i = 0; i < maxElement; i++) {
-			if(arr[i] > arr[i + 1]) {
-				arr[i] = arr[i] + arr[i + 1];
-				arr[i + 1] = arr[i] - arr[i + 1];
-				arr[i] = arr[i] - arr[i + 1];
+	int i, j;
+	for (i = 0; i < arraySize - 1; i++){
+
+		// Last i elements are already in place
+		for (j = 0; j < arraySize - i - 1; j++){
+			if (arr[j] > arr[j + 1]){
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
 			}
 		}
 	}
