@@ -6,13 +6,13 @@ CCFLAGS += -I ./ -std=c98
 all		:	release
 #Movies.exe : executable
 Lab9.exe	:	Lab9.o Random.o
-			$(CXX) $(CXXFLAGS) -o Zoo.exe Zoo.o Creature.o
+			$(CXX) $(CXXFLAGS) -o Lab9.exe Random.o Lab9.o
 
 #C++ Compiler Flags
 release	: CXXFLAGS += -O3
 #C Compiler Flags
 release : CCFLAGS  += -O3
-release	: Zoo.exe
+release	: Lab9.exe
 
 #Debug settings: unused: -fno-access-control -Q
 debug : clean
@@ -28,7 +28,7 @@ debug	:	executable
 #Cleanup! Deletes old exe and object files
 clean	:	#clean up, nothing to build
 		del *.o
-		del Zoo.exe
+		del Lab9.exe
 
 
 
