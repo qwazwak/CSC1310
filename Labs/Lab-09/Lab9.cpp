@@ -58,7 +58,6 @@ int main() {
 	winningNumber += 100 * (rand() % 10);
 	winningNumber += 1000 * (rand() % 10);
 	winningNumber += 10000 * (rand() % 10);
-	winningNumber = 55555;
 
 	cout << "Mrs. Crockett, enter in your lucky numbers!" << "\n" << endl;
 	for (size_t i = 0; i < 5; i++) {
