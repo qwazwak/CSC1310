@@ -1,3 +1,7 @@
+/* Title:  Lab 09
+ * Author:  Rus Hoffman and Braedin Jared
+ * Date:  November 11th, 2018
+ */
 #include "Random.h"
 #include <iostream>
 #include <string>
