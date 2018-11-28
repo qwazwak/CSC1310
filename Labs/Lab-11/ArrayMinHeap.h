@@ -25,17 +25,20 @@ class ArrayMinHeap {
 		ArrayMinHeap(size_t baseCapacity);
 		~ArrayMinHeap();
 
-
-
-
-
 		void minHeapify();
 		void insert(Creature);
-		bool remove(){
+		bool remove() {
 			bool isDoneDoGood = true;
-
-
-
+			if(heap_size != 0) {
+				this->heapArray[0].setName(this->heapArray[heap_size - 1].getName());
+				this->heapArray[0].setDescription(this->heapArray[heap_size - 1].getDescription());
+				this->heapArray[0].setDangerous(this->heapArray[heap_size - 1].getDangerous());
+				this->heapArray[0].setCost(this->heapArray[heap_size - 1].getCost());
+				this->heap_size = this->heap_size - 1;
+			}
+			else {
+				isDoneDoGood = false;
+			}
 			return isDoneDoGood;
 		}
 		/*
