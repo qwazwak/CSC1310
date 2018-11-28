@@ -7,9 +7,10 @@
 #include "Creature.h"
 using namespace std;
 
-string to_lower(string str ){ // return string converted to lower case
-	for( char& c : str ) c = std::tolower(c) ;
-		return str ;
+string to_lower(string str) {   // return string converted to lower case
+	for (char& c : str)
+		c = std::tolower(c);
+	return str;
 }
 
 class ArrayMinHeap {
@@ -29,35 +30,20 @@ class ArrayMinHeap {
 	public:
 		ArrayMinHeap(size_t baseCapacity);
 		~ArrayMinHeap();
+		void minHeapify(int i = 0);
 
 		void insert(Creature);
 		bool remove();
 		void resizeArray();
 
-		//saveToFile(traverses the array starting at 1stelement and calls the printCreatureToFile function sending "savedCreatures.txt"to this funct
 		void saveToFile();
-
-		//display(traverses the array starting at 1stelement and prints out the name of each creature �one per line)
 		void display();
 
-		Creature* peek();
+		Creature peek();
 		bool isEmpty();
 		bool getNumberOfNodes();
 		size_t getHeight();
 
-		void minHeapify(int i = 0){
-			int l = 2*i + 1;
-			int r = 2*i + 2; 
-			int smallest = i; 
-			if (l < heap_size && to_lower(this->heapArray[l].getName()) < to_lower(this->heapArray[i].getName())) 
-				smallest = l; 
-			if (r < heap_size && to_lower(this->heapArray[l].getName()) > to_lower(this->heapArray[i].getName()))
-				smallest = r; 
-			if (smallest != i){
-				swap(&heapArray[i], &heapArray[smallest]); 
-				minHeapify(smallest); 
-			} 
-		} 
 
 };
 
@@ -128,7 +114,7 @@ inline void ArrayMinHeap::display() {
 	}
 }
 
-inline Creature* ArrayMinHeap::peek() {
+inline Creature ArrayMinHeap::peek() {
 	return this->heapArray[0];
 }
 
@@ -142,6 +128,22 @@ inline bool ArrayMinHeap::getNumberOfNodes() {
 
 inline size_t ArrayMinHeap::getHeight() {
 	return ceil(static_cast<double>(log2(this->heap_size))) + 1;
+}
+
+inline void ArrayMinHeap::minHeapify(int i) {
+	int l = this->left(i);
+	int r = 2 * i + 2;
+	int smallest = i;
+	if(l < heap_size && to_lower(this->heapArray[l].getName()) < to_lower(this->heapArray[i].getName()))
+		smallest = l;
+	
+	if(r < heap_size && to_lower(this->heapArray[l].getName()) > to_lower(this->heapArray[i].getName()))
+		smallest = r;
+	
+	if(smallest != i) {
+		swap(&heapArray[i], &heapArray[smallest]);
+		minHeapify(smallest);
+	}
 }
 
 #endif
