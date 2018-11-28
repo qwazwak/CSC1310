@@ -68,7 +68,7 @@ inline size_t ArrayMinHeap::right(size_t i) {
 inline ArrayMinHeap::ArrayMinHeap(size_t baseCapacity) {
 	this->capacity = baseCapacity;
 	this->heap_size = 0;
-	this->heapArray = new Creature[heap_size];
+	this->heapArray = new Creature[this->capacity];
 }
 
 inline ArrayMinHeap::~ArrayMinHeap() {
@@ -85,6 +85,7 @@ inline bool ArrayMinHeap::remove() {
 		this->heapArray[0].setDangerous(this->heapArray[heap_size - 1].getDangerous());
 		this->heapArray[0].setCost(this->heapArray[heap_size - 1].getCost());
 		this->heap_size = this->heap_size - 1;
+		this->minHeapify(0);
 	}
 	else {
 		isDoneDoGood = false;
@@ -96,7 +97,10 @@ inline void ArrayMinHeap::resizeArray() {
 	capacity = capacity * 2;
 	Creature* tempArr = new Creature[capacity];
 	for (size_t i = 0; i < heap_size; i++) {
-		tempArr[i] = heapArray[i];
+		tempArr[0].setName(this->heapArray[i].getName());
+		tempArr[0].setDescription(this->heapArray[i].getDescription());
+		tempArr[0].setDangerous(this->heapArray[i].getDangerous());
+		tempArr[0].setCost(this->heapArray[i].getCost());
 	}
 	delete heapArray;
 	heapArray = tempArr;
@@ -131,10 +135,15 @@ inline size_t ArrayMinHeap::getHeight() {
 }
 
 inline void ArrayMinHeap::insert(Creature creature){
-	if(this->heap_size >= this->capacity){
+	if(this->heap_size + 1 >= this->capacity){
 		this->resizeArray();
 	}
-	this->heapArray[this->heap_size++] = creature;
+	this->heap_size++;
+	this->heapArray[this->heap_size - 1].setName(creature.getName());
+	this->heapArray[this->heap_size - 1].setDescription(creature.getDescription());
+	this->heapArray[this->heap_size - 1].setDangerous(creature.getDangerous());
+	this->heapArray[this->heap_size - 1].setCost(creature.getCost());
+//	this->minHeapify(0);
 }
 
 inline void ArrayMinHeap::minHeapify(int i) {

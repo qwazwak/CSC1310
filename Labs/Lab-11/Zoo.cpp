@@ -149,10 +149,9 @@ void enterMagicalCreatureFromFile(ArrayMinHeap *creatureTree) {
 			
 			//create a creature
 			Creature newCreature(name, desc, dangerous, cost);
-			
+
 			//insert creature in the tree
 			creatureTree->insert(newCreature);
-			
 			numCreatures++;
 			//start reading next line with new creature.						
 			getline(inputFile, temp);
