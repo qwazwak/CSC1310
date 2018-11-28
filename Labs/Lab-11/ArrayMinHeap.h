@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cmath>
 #include "Creature.h"
 using namespace std;
 
@@ -27,12 +28,8 @@ class ArrayMinHeap {
 					Isuggest passing the creature to be removed by reference and returning the Boolean.
 		insert(insert new creature in heap –Creature is sent to this function)
 		resizeArray(make an array 2 times as big as original)
-		isEmpty(returns t
 		insert(insert new creature in heap –Creature is sent to this function)
 		resizeArray(make an array 2 times as big as original)
-		isEmpty(returns true if heap_size is zero and false otherwise)
-		getNumberOfNodes(returns heap_size)
-		getHeight(returns the ceiling of log base 2 of heap_size plus 1)
 		display(traverses the array starting at 1stelement and prints out the name of each creature –one per line)
 		saveToFile(traverses the array starting at 1stelement and calls the printCreatureToFile function sending "savedCreatures.txt"to this funct
 	public:
@@ -41,6 +38,13 @@ class ArrayMinHeap {
 		bool isEmpty(){
 			return heap_size == 0;
 		}
+		bool getNumberOfNodes(){
+			return heap_size;
+		}
+		size_t getHeight(){
+			return ceil(static_cast<double>(log2(this->heap_size))) + 1;
+		}
+
 };
 
 #endif
