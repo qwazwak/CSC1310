@@ -13,61 +13,84 @@ class ArrayMinHeap {
 		size_t capacity;
 		size_t heap_size;
 
-		void swap();
+		void swap(Creature* x, Creature* y);
 		//get the parent of index i
-		size_t parent(size_t i) {
-			return (i - 1) / 2;
-		}
+		size_t parent(size_t i);
 		//get the left child of index i
-		size_t left(size_t i) {
-			return (2 * i) + 1;
-		}
+		size_t left(size_t i);
 		//get the right child of index i
-		size_t right(size_t i) {
-			return (2 * i) + 2;
-		}
+		size_t right(size_t i);
 
 	public:
-		ArrayMinHeap(size_t baseCapacity) {
-			this->capacity = baseCapacity;
-			this->heap_size = 0;
-			this->heapArray = new Creature[heapArray];
-		}
-		~ArrayMinHeap() {
-			this->capacity = 0;
-			this->heap_size = 0;
-			delete this->heapArray;
-		}
+		ArrayMinHeap(size_t baseCapacity);
+		~ArrayMinHeap();
 
 		/*
 		 minHeapify(recursive method to adjust the heap to make sure all nodes follow the min-heap rule)
 		 remove(remove minimum element (or root) from min heap)
-		 Note –you will need to return a Booleanfrom this function to indicate if a creature was removed (none will be removed if there are no nodes).
-		 Also, you will need to return the creature removed.
-		 Isuggest passing the creature to be removed by reference and returning the Boolean.
+		 	 Note –you will need to return a Booleanfrom this function to indicate if a creature was removed (none will be removed if there are no nodes).
+		 	 Also, you will need to return the creature removed.
+		 	 passing the creature to be removed by reference and returning the Boolean.
 		 insert(insert new creature in heap –Creature is sent to this function)
 		 resizeArray(make an array 2 times as big as original)
 		 insert(insert new creature in heap –Creature is sent to this function)
 		 resizeArray(make an array 2 times as big as original)
 		 display(traverses the array starting at 1stelement and prints out the name of each creature –one per line)
 		 saveToFile(traverses the array starting at 1stelement and calls the printCreatureToFile function sending "savedCreatures.txt"to this funct
-		 public:
 		 */
 
-		Creature* peek() {
-			return this->heapArray[0];
-		}
+		Creature* peek();
 
-		bool isEmpty() {
-			return this->heap_size == 0;
-		}
-		bool getNumberOfNodes() {
-			return this->heap_size;
-		}
-		size_t getHeight() {
-			return ceil(static_cast<double>(log2(this->heap_size))) + 1;
-		}
-
+		bool isEmpty();
+		bool getNumberOfNodes();
+		size_t getHeight();
+		
 };
+
+inline void ArrayMinHeap::swap(Creature* x, Creature* y) {
+	Creature* temp = x;
+	x = y;
+	y = temp;
+}
+
+inline size_t ArrayMinHeap::parent(size_t i) {
+	return (i - 1) / 2;
+}
+
+inline size_t ArrayMinHeap::left(size_t i) {
+	return (2 * i) + 1;
+}
+
+inline size_t ArrayMinHeap::right(size_t i) {
+	return (2 * i) + 2;
+}
+
+inline ArrayMinHeap::ArrayMinHeap(size_t baseCapacity) {
+	this->capacity = baseCapacity;
+	this->heap_size = 0;
+	this->heapArray = new Creature[heapArray];
+}
+
+inline ArrayMinHeap::~ArrayMinHeap() {
+	this->capacity = 0;
+	this->heap_size = 0;
+	delete this->heapArray;
+}
+
+inline Creature* ArrayMinHeap::peek() {
+	return this->heapArray[0];
+}
+
+inline bool ArrayMinHeap::isEmpty() {
+	return this->heap_size == 0;
+}
+
+inline bool ArrayMinHeap::getNumberOfNodes() {
+	return this->heap_size;
+}
+
+inline size_t ArrayMinHeap::getHeight() {
+	return ceil(static_cast<double>(log2(this->heap_size))) + 1;
+}
 
 #endif
