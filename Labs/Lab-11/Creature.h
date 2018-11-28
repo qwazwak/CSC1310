@@ -3,15 +3,14 @@
 
 #include <iostream>
 #include <fstream>
-using namespace std;  
+using namespace std;
 
-class Creature
-{
+class Creature {
 	private:
-		string name; //name of creature
-		string description; //description of creature
-		bool dangerous; //is the creature dangerous?  Will it let me pet it?
-		float creatureCost; //cost to take care of the creature per month
+		string name;   //name of creature
+		string description;   //description of creature
+		bool dangerous;   //is the creature dangerous?  Will it let me pet it?
+		float creatureCost;   //cost to take care of the creature per month
 		
 	public:
 		Creature();
@@ -23,10 +22,9 @@ class Creature
 		void setName(string);
 		void setDescription(string);
 		void setDangerous(bool);
-		void setCost(float );
+		void setCost(float);
 		void printCreature();
 		void printCreatureToFile(string);
 };
-
 
 #endif
