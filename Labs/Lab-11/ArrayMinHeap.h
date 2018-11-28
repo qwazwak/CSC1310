@@ -21,7 +21,6 @@ class ArrayMinHeap {
 		constructor(accepts an integer capacity & creates heapArray based on this capacity)
 		destructor(releases heapArray memory)
 		minHeapify(recursive method to adjust the heap to make sure all nodes follow the min-heap rule)
-		peek(returns root creature)
 		remove(remove minimum element (or root) from min heap)
 			Note –you will need to return a Booleanfrom this function to indicate if a creature was removed (none will be removed if there are no nodes).
 			Also, you will need to return the creature removed.
@@ -35,6 +34,10 @@ class ArrayMinHeap {
 	public:
 		*/
 		
+		Creature* peek(){
+			return heapArray[0];
+		}
+
 		bool isEmpty(){
 			return heap_size == 0;
 		}
