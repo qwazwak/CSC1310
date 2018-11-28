@@ -25,6 +25,13 @@ class ArrayMinHeap {
 		ArrayMinHeap(size_t baseCapacity);
 		~ArrayMinHeap();
 
+
+
+
+
+		void minHeapify();
+		void insert(Creature);
+		bool remove();
 		/*
 		 minHeapify(recursive method to adjust the heap to make sure all nodes follow the min-heap rule)
 		 remove(remove minimum element (or root) from min heap)

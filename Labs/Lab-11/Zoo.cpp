@@ -15,19 +15,20 @@ int main() {
 	int choice;
 	char response;
 	
-	ArrayMinHeap creatureHeap;
+	ArrayMinHeap creatureHeap(100);
 	
 	do {
 		
 		cout << "\n\nWhat would you like to do?\n";
 		cout << "\t1.  Enter Magical Creature\n";
 		cout << "\t2.  List/Print Creatures.\n";
-		cout << "\t3.  End Program.\n";
-		cout << "\tEnter 1, 2, or 3.\n";
+		cout << "\t3.  Remove Next Creature.\n";
+		cout << "\t4.  End Program.\n";
+		cout << "\tEnter 1, 2, 3, or 4.\n";
 		cout << "CHOICE:  ";
 		cin >> choice;
 		
-		while (choice < 1 || choice > 3) {
+		while (choice < 1 || choice > 4) {
 			cout << "\nYour choice was invalid.  Choose a number 1 through 3.\n";
 			cout << "CHOICE: ";
 			cin >> choice;
@@ -59,15 +60,20 @@ int main() {
 				break;
 				
 			case 3:
+				deleteCreature(&creatureHeap);
+				break;
+
+			case 4:
 				cout << "\nWould you like to save your creature list to a file? (y or n)  ";
 				cin >> response;
 				if(tolower(response) == 'y')
 					saveCreaturesToFile(&creatureHeap);
 				cout << "\n\nGOODBYE!\n";
+				break;
 				
 		}   //end of switch
 		
-	}while (choice != 3);
+	}while (choice != 4);
 
 	return 0;
 }   //end of main
@@ -101,7 +107,7 @@ void enterMagicalCreature(ArrayMinHeap *creatureTree) {
 		Creature newCreature(name, desc, dangerous, cost);
 		
 		//insert creature in the tree
-		creatureTree->insertNode(newCreature);
+		creatureTree->insert(newCreature);
 		
 		cout << "\n\nWant to add more creatures? (y or n)  ";
 		cin >> response;
@@ -145,7 +151,7 @@ void enterMagicalCreatureFromFile(ArrayMinHeap *creatureTree) {
 			Creature newCreature(name, desc, dangerous, cost);
 			
 			//insert creature in the tree
-			creatureTree->insertNode(newCreature);
+			creatureTree->insert(newCreature);
 			
 			numCreatures++;
 			//start reading next line with new creature.						
@@ -162,14 +168,14 @@ void enterMagicalCreatureFromFile(ArrayMinHeap *creatureTree) {
 }
 
 void printCreatures(ArrayMinHeap *creatureTree) {
-	creatureTree->fullDisplayInOrder();
+	creatureTree->display();
 }
 
 void saveCreaturesToFile(ArrayMinHeap *creatureTree) {
 	string filename;
 	Creature tempCreature;
 	
-	if(creatureTree->getNumNodes() == 0) {
+	if(creatureTree->getNumberOfNodes() == 0) {
 		cout << "------------------------------------------------------------------------" << endl;
 		cout << "THERE ARE NO CREATURES AT YOUR ZOO!\n";
 		cout << endl;
@@ -177,4 +183,7 @@ void saveCreaturesToFile(ArrayMinHeap *creatureTree) {
 	else {
 		creatureTree->saveToFile();
 	}
+}
+void deleteCreature(ArrayMinHeap* theHeap) {
+	theHeap->remove();
 }
