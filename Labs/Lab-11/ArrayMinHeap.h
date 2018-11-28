@@ -30,31 +30,8 @@ class ArrayMinHeap {
 		ArrayMinHeap(size_t baseCapacity);
 		~ArrayMinHeap();
 
-		void minHeapify();
 		void insert(Creature);
-		bool remove() {
-			bool isDoneDoGood = true;
-			if(heap_size != 0) {
-				this->heapArray[0].setName(this->heapArray[heap_size - 1].getName());
-				this->heapArray[0].setDescription(this->heapArray[heap_size - 1].getDescription());
-				this->heapArray[0].setDangerous(this->heapArray[heap_size - 1].getDangerous());
-				this->heapArray[0].setCost(this->heapArray[heap_size - 1].getCost());
-				this->heap_size = this->heap_size - 1;
-			}
-			else {
-				isDoneDoGood = false;
-			}
-			return isDoneDoGood;
-		}
-		/*
-		 minHeapify(recursive method to adjust the heap to make sure all nodes follow the min-heap rule)
-		 remove(remove minimum element (or root) from min heap)
-		 Note �you will need to return a Booleanfrom this function to indicate if a creature was removed (none will be removed if there are no nodes).
-		 Also, you will need to return the creature removed.
-		 passing the creature to be removed by reference and returning the Boolean.
-		 insert(insert new creature in heap �Creature is sent to this function)
-		 */
-
+		bool remove();
 		void resizeArray();
 
 		//saveToFile(traverses the array starting at 1stelement and calls the printCreatureToFile function sending "savedCreatures.txt"to this funct
@@ -68,7 +45,7 @@ class ArrayMinHeap {
 		bool getNumberOfNodes();
 		size_t getHeight();
 
-		void minHeapify(int i){
+		void minHeapify(int i = 0){
 			int l = 2*i + 1;
 			int r = 2*i + 2; 
 			int smallest = i; 
@@ -112,6 +89,21 @@ inline ArrayMinHeap::~ArrayMinHeap() {
 	this->capacity = 0;
 	this->heap_size = 0;
 	delete this->heapArray;
+}
+
+inline bool ArrayMinHeap::remove() {
+	bool isDoneDoGood = true;
+	if(heap_size != 0) {
+		this->heapArray[0].setName(this->heapArray[heap_size - 1].getName());
+		this->heapArray[0].setDescription(this->heapArray[heap_size - 1].getDescription());
+		this->heapArray[0].setDangerous(this->heapArray[heap_size - 1].getDangerous());
+		this->heapArray[0].setCost(this->heapArray[heap_size - 1].getCost());
+		this->heap_size = this->heap_size - 1;
+	}
+	else {
+		isDoneDoGood = false;
+	}
+	return isDoneDoGood;
 }
 
 inline void ArrayMinHeap::resizeArray() {
