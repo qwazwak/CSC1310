@@ -40,7 +40,7 @@ class ArrayMinHeap {
 		//display(traverses the array starting at 1stelement and prints out the name of each creature �one per line)
 		void display();
 
-		Creature* peek();
+		Creature peek();
 		bool isEmpty();
 		bool getNumberOfNodes();
 		size_t getHeight();
@@ -128,7 +128,7 @@ inline void ArrayMinHeap::display() {
 	}
 }
 
-inline Creature* ArrayMinHeap::peek() {
+inline Creature ArrayMinHeap::peek() {
 	return this->heapArray[0];
 }
 
@@ -142,6 +142,13 @@ inline bool ArrayMinHeap::getNumberOfNodes() {
 
 inline size_t ArrayMinHeap::getHeight() {
 	return ceil(static_cast<double>(log2(this->heap_size))) + 1;
+}
+
+inline void ArrayMinHeap::insert(Creature creature){
+	if(this->heap_size >= this->capacity){
+		this->resizeArray();
+	}
+	this->heapArray[this->heap_size++] = creature;
 }
 
 #endif
