@@ -28,23 +28,25 @@ class ArrayMinHeap {
 		/*
 		 minHeapify(recursive method to adjust the heap to make sure all nodes follow the min-heap rule)
 		 remove(remove minimum element (or root) from min heap)
-		 	 Note –you will need to return a Booleanfrom this function to indicate if a creature was removed (none will be removed if there are no nodes).
-		 	 Also, you will need to return the creature removed.
-		 	 passing the creature to be removed by reference and returning the Boolean.
+		 Note –you will need to return a Booleanfrom this function to indicate if a creature was removed (none will be removed if there are no nodes).
+		 Also, you will need to return the creature removed.
+		 passing the creature to be removed by reference and returning the Boolean.
 		 insert(insert new creature in heap –Creature is sent to this function)
-		 resizeArray(make an array 2 times as big as original)
-		 insert(insert new creature in heap –Creature is sent to this function)
-		 resizeArray(make an array 2 times as big as original)
-		 display(traverses the array starting at 1stelement and prints out the name of each creature –one per line)
-		 saveToFile(traverses the array starting at 1stelement and calls the printCreatureToFile function sending "savedCreatures.txt"to this funct
 		 */
 
-		Creature* peek();
+		void resizeArray();
 
+		//saveToFile(traverses the array starting at 1stelement and calls the printCreatureToFile function sending "savedCreatures.txt"to this funct
+		void saveToFile();
+
+		//display(traverses the array starting at 1stelement and prints out the name of each creature –one per line)
+		void display();
+
+		Creature* peek();
 		bool isEmpty();
 		bool getNumberOfNodes();
 		size_t getHeight();
-		
+
 };
 
 inline void ArrayMinHeap::swap(Creature* x, Creature* y) {
@@ -68,13 +70,35 @@ inline size_t ArrayMinHeap::right(size_t i) {
 inline ArrayMinHeap::ArrayMinHeap(size_t baseCapacity) {
 	this->capacity = baseCapacity;
 	this->heap_size = 0;
-	this->heapArray = new Creature[heapArray];
+	this->heapArray = new Creature[heap_size];
 }
 
 inline ArrayMinHeap::~ArrayMinHeap() {
 	this->capacity = 0;
 	this->heap_size = 0;
 	delete this->heapArray;
+}
+
+inline void ArrayMinHeap::resizeArray() {
+	capacity = capacity * 2;
+	Creature* tempArr = new Creature[capacity];
+	for (size_t i = 0; i < heap_size; i++) {
+		tempArr[i] = heapArray[i];
+	}
+	delete heapArray;
+	heapArray = tempArr;
+}
+
+inline void ArrayMinHeap::saveToFile() {
+	for (size_t i = 0; i < heap_size; i++) {
+		heapArray[i].printCreatureToFile("savedCreatures.txt");
+	}
+}
+
+inline void ArrayMinHeap::display() {
+	for (size_t i = 0; i < heap_size; i++) {
+		heapArray[i].printCreature();
+	}
 }
 
 inline Creature* ArrayMinHeap::peek() {
