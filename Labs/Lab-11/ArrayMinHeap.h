@@ -1,3 +1,8 @@
+//
+// Authored by Braedin Jared && Rus Hoffman
+// Lab 11
+//
+
 #ifndef ARRAYMINHEAP_H
 #define ARRAYMINHEAP_H
 

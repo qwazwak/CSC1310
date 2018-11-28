@@ -1,3 +1,8 @@
+//
+// Authored by Braedin Jared && Rus Hoffman
+// Lab 11
+//
+
 #ifndef CREATURE_H
 #define CREATURE_H
 

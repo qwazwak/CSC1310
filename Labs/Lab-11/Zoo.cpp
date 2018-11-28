@@ -1,3 +1,9 @@
+//
+// Authored by Braedin Jared && Rus Hoffman
+// Lab 11
+//
+
+
 #include "Creature.h"
 #include "ArrayMinHeap.h"
 #include <cctype>
