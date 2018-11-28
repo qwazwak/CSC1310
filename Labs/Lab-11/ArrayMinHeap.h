@@ -1,30 +1,41 @@
-#ifndef CREATURE_H
-#define CREATURE_H
+#ifndef ARRAYMINIHEAP_H
+#define ARRAYMINIHEAP_H
 
 #include <iostream>
 #include <fstream>
+#include "Creature.h"
 using namespace std;
 
-class Creature {
+class ArrayMiniHeap {
 	private:
-		string name;   //name of creature
-		string description;   //description of creature
-		bool dangerous;   //is the creature dangerous?  Will it let me pet it?
-		float creatureCost;   //cost to take care of the creature per month
-		
+		Creature* heapArray;
+		size_t capacity;
+		size_t heap_size;
+
+		void swap();
 	public:
-		Creature();
-		Creature(string, string, bool, float);
-		string getName() const;
-		string getDescription() const;
-		bool getDangerous() const;
-		float getCost() const;
-		void setName(string);
-		void setDescription(string);
-		void setDangerous(bool);
-		void setCost(float);
-		void printCreature();
-		void printCreatureToFile(string);
+		constructor(accepts an integer capacity & creates heapArray based on this capacity)
+		destructor(releases heapArray memory)
+		minHeapify(recursive method to adjust the heap to make sure all nodes follow the min-heap rule)
+		peek(returns root creature)
+		remove(remove minimum element (or root) from min heap)
+			Note –you will need to return a Booleanfrom this function to indicate if a creature was removed (none will be removed if there are no nodes).
+			Also, you will need to return the creature removed.
+					Isuggest passing the creature to be removed by reference and returning the Boolean.
+		insert(insert new creature in heap –Creature is sent to this function)
+		resizeArray(make an array 2 times as big as original)
+		isEmpty(returns t
+		insert(insert new creature in heap –Creature is sent to this function)
+		resizeArray(make an array 2 times as big as original)
+		isEmpty(returns true if heap_size is zero and false otherwise)
+		getNumberOfNodes(returns heap_size)
+		getHeight(returns the ceiling of log base 2 of heap_size plus 1)
+		display(traverses the array starting at 1stelement and prints out the name of each creature –one per line)
+		saveToFile(traverses the array starting at 1stelement and calls the printCreatureToFile function sending "savedCreatures.txt"to this funct
+	public:
+		
+		
+		
 };
 
 #endif
