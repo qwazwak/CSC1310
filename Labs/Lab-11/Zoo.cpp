@@ -1,21 +1,21 @@
 #include "Creature.h"
-#include "CreatureBinaryTree.h"
+#include "ArrayMinHeap.h"
 #include <cctype>
 #include <iostream>
 #include <fstream>
 using namespace std;
 
-void enterMagicalCreature(CreatureBinaryTree*);
-void enterMagicalCreatureFromFile(CreatureBinaryTree*);
-void deleteCreature(CreatureBinaryTree*);
-void printCreatures(CreatureBinaryTree*);
-void saveCreaturesToFile(CreatureBinaryTree*);
+void enterMagicalCreature(ArrayMinHeap*);
+void enterMagicalCreatureFromFile(ArrayMinHeap*);
+void deleteCreature(ArrayMinHeap*);
+void printCreatures(ArrayMinHeap*);
+void saveCreaturesToFile(ArrayMinHeap*);
 
 int main() {
 	int choice;
 	char response;
 	
-	CreatureBinaryTree creatureTree;
+	ArrayMinHeap creatureHeap;
 	
 	do {
 		
@@ -49,30 +49,30 @@ int main() {
 					cin >> enterChoice;
 				}
 				if(enterChoice == 1)
-					enterMagicalCreature(&creatureTree);
+					enterMagicalCreature(&creatureHeap);
 				else
-					enterMagicalCreatureFromFile(&creatureTree);
+					enterMagicalCreatureFromFile(&creatureHeap);
 				break;
 				
 			case 2:
-				printCreatures(&creatureTree);
+				printCreatures(&creatureHeap);
 				break;
 				
 			case 3:
 				cout << "\nWould you like to save your creature list to a file? (y or n)  ";
 				cin >> response;
 				if(tolower(response) == 'y')
-					saveCreaturesToFile(&creatureTree);
+					saveCreaturesToFile(&creatureHeap);
 				cout << "\n\nGOODBYE!\n";
 				
 		}   //end of switch
 		
 	}while (choice != 3);
-	
+
 	return 0;
 }   //end of main
 
-void enterMagicalCreature(CreatureBinaryTree *creatureTree) {
+void enterMagicalCreature(ArrayMinHeap *creatureTree) {
 	string name, desc;
 	float cost;
 	bool dangerous;
@@ -109,7 +109,7 @@ void enterMagicalCreature(CreatureBinaryTree *creatureTree) {
 	}while (tolower(response) == 'y');
 }
 
-void enterMagicalCreatureFromFile(CreatureBinaryTree *creatureTree) {
+void enterMagicalCreatureFromFile(ArrayMinHeap *creatureTree) {
 	ifstream inputFile;
 	char filename[100];
 	cout << "\n\nWhat is the name of the file you want to read from?\n";
@@ -161,11 +161,11 @@ void enterMagicalCreatureFromFile(CreatureBinaryTree *creatureTree) {
 	}
 }
 
-void printCreatures(CreatureBinaryTree *creatureTree) {
+void printCreatures(ArrayMinHeap *creatureTree) {
 	creatureTree->fullDisplayInOrder();
 }
 
-void saveCreaturesToFile(CreatureBinaryTree *creatureTree) {
+void saveCreaturesToFile(ArrayMinHeap *creatureTree) {
 	string filename;
 	Creature tempCreature;
 	

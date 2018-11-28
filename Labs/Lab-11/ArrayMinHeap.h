@@ -6,14 +6,17 @@
 #include "Creature.h"
 using namespace std;
 
-class ArrayMiniHeap {
+class ArrayMinHeap {
 	private:
 		Creature* heapArray;
 		size_t capacity;
 		size_t heap_size;
 
+
+
 		void swap();
 	public:
+		/*
 		constructor(accepts an integer capacity & creates heapArray based on this capacity)
 		destructor(releases heapArray memory)
 		minHeapify(recursive method to adjust the heap to make sure all nodes follow the min-heap rule)
@@ -33,9 +36,11 @@ class ArrayMiniHeap {
 		display(traverses the array starting at 1stelement and prints out the name of each creature –one per line)
 		saveToFile(traverses the array starting at 1stelement and calls the printCreatureToFile function sending "savedCreatures.txt"to this funct
 	public:
+		*/
 		
-		
-		
+		bool isEmpty(){
+			return heap_size == 0;
+		}
 };
 
 #endif
